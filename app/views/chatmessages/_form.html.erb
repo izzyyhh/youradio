@@ -1,0 +1,15 @@
+<%= form_for(chatmessage, remote: true) do |form| %>
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_area :username, id: 'username-input' %>
+
+    <%= form.label :content %>
+    <%= form.text_area :content, id: 'content-input' %>
+  </div>
+
+  <%= form.hidden_field :server_id, value: @server.id %>
+
+  <div class="actions">
+    <%= form.submit 'Submit', data: { disable_with: false }%>
+  </div>
+<% end %>

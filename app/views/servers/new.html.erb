@@ -1,0 +1,11 @@
+<h1>Erstelle einen Server</h1>
+
+<%= form_for @server do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.hidden_field :server_id, value: @server.id %>
+    </div>
+<%= f.submit %>
+<% end %>
+
