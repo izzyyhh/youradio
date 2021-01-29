@@ -1,7 +1,6 @@
 <%= form_for(chatmessage, remote: true) do |form| %>
   <div class="field">
-    <%= form.label :username %>
-    <%= form.text_area :username, id: 'username-input' %>
+    <%= form.hidden_field :username, value: current_user.email %>
 
     <%= form.label :content %>
     <%= form.text_area :content, id: 'content-input' %>

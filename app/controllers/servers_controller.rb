@@ -2,11 +2,18 @@ class ServersController < ApplicationController
     before_action :authenticate_user!, :set_server, only: %i[ show edit update destroy ]
 
     def index
-        @servers = Server.all
+        if user_signed_in?
+            @servers = current_user.servers
+        end
     end
 
     def show
-        @servers = Server.all
+        if user_signed_in?
+            @servers = current_user.servers
+        else
+            @servers = []
+        end
+
         render 'index'
     end
 
@@ -15,17 +22,19 @@ class ServersController < ApplicationController
     end
 
     def create
-        @server = Server.create(server_params)
+        @server = current_user.servers.create(server_params)
         redirect_to @server
+    end
+
+    private
+
+    def set_server
+        @server = Server.find(params[:id])
+    end
+
+    def server_params
+        params.require(:server).permit(:name)
     end
 end
 
-private
 
-def set_server
-    @server = Server.find(params[:id])
-end
-
-def server_params
-    params.require(:server).permit(:name)
-end

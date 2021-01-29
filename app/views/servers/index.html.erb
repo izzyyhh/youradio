@@ -1,4 +1,6 @@
 <% if user_signed_in? %>
+    <p>Hi, <%= current_user.email %>, welcome to TestRadio!</p>
+
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
 
     <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
