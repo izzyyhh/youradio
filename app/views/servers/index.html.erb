@@ -26,6 +26,7 @@
 
     <% if @server.present? %>
         <h2>Chat</h2>
+        <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
         <%= @server.name %>
 
         <div id='server-messages'>
