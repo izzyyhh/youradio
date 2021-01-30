@@ -35,7 +35,13 @@
                 </div>
 
                 <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+                <h2> TRACK </h2>
 
+                <%= render 'tracks/form', track: Track.new %>
+                
+                <iframe width="420" height="315" allow="autoplay; fullscreen"
+                    src="https://www.youtube.com/embed/vrCSsaN4OJ8?autoplay=1" autoplay muted>
+                </iframe>
             <% else %>
                 <h2><%= current_user.email %>, welcome to TestRadio </h2>
             <% end %>

@@ -20,9 +20,13 @@ document.addEventListener("turbolinks:load", ()=>{
     },
   
     received(data) {
-      const messages = document.getElementById('server-messages')
-      messages.innerHTML += data.html
-      console.log(data)
+      if(data.content_type != "tracks"){
+        const messages = document.getElementById('server-messages')
+        messages.innerHTML += data.html
+        
+      }else {
+        console.log(data.tracks)
+      }
       // Called when there's incoming data on the websocket for this channel
     }
   });  

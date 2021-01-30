@@ -23,6 +23,7 @@ class ServersController < ApplicationController
 
     def create
         @server = current_user.servers.create(server_params)
+        Playlist.create(server_id: @server.id)
         redirect_to @server
     end
 
