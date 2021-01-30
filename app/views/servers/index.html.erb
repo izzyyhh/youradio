@@ -1,45 +1,47 @@
 <% if user_signed_in? %>
+<div class='servers-index'>
     <p>Hi, <%= current_user.email %>, welcome to TestRadio!</p>
-
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
-
     <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
-    <h1>Servers</h1>
 
-    <div class="servers_list">
-        <% @servers.each do |server| %>
+    <div class='swrap'>
 
-        <div>
-            <h2><%= server.name %></h2>
-            <%= link_to server.name, server_path(server.id) %>
+        <div class='servers-stem'>
+            <h1>Servers</h1>
+
+            <div class="servers_list">
+                <% @servers.each do |server| %>
+
+                <div class="server-link">
+                    <%= link_to server.name, server_path(server.id) %>
+                </div>
+                <% end %>
+                <%= link_to "+", new_server_path, class: "create-server" %>
+            </div>
         </div>
 
-        <% end %>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="create_server">
-    <%= link_to "+", new_server_path %>
-    </div>
 
-    <% if @server.present? %>
-        <h2>Chat</h2>
-        <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
-        <%= @server.name %>
 
-        <div id='server-messages'>
-            <% @server.chatmessages.each do |message| %>
-                <%= render 'chatmessages/message' , message: message %>
+        <div class="server-content">
+            <% if @server.present? %>
+                <h2>Chat</h2>
+                <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
+                <%= @server.name %>
+
+                <div id='server-messages'>
+                    <% @server.chatmessages.each do |message| %>
+                        <%= render 'chatmessages/message' , message: message %>
+                    <% end %>
+                </div>
+
+                <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+
+            <% else %>
+                <h2><%= current_user.email %>, welcome to TestRadio </h2>
             <% end %>
         </div>
-
-        <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
-
-    <% else %>
-        <h2><%= current_user.email %>, welcome to TestRadio </h2>
-    <% end %>
+    </div>
+</div>
 <% else %>
     <%= render 'shared/login' %>
 <% end %>
