@@ -1,5 +1,87 @@
 import consumer from "./consumer"
 
+
+let localstream;
+let leftVideo;
+let rightVideo;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // const videoEminem = document.getElementById('eminem')
+  // console.log(videoEminem)
+  // const videoTest = document.getElementById('video_test')
+  // console.log(videoTest)
+  // var ifram= document.getElementById('ytplayer')
+
+  // videoEminem.onplay = function() {
+
+  //   const stream=videoEminem.captureStream()
+  //   console.log(stream)
+  //   videoTest.srcObject = stream
+  // }
+  leftVideo = document.getElementById('leftVideo')
+  rightVideo = document.getElementById('rightVideo')
+
+  leftVideo.oncanplay = maybeCreateStream;
+
+  if (leftVideo.readyState >= 3) { // HAVE_FUTURE_DATA
+    // Video is already ready to play, call maybeCreateStream in case oncanplay
+    // fired before we registered the event handler.
+    maybeCreateStream();
+  }
+
+});
+
+
+function maybeCreateStream() {
+  if (localstream) {
+    return;
+  }
+  if (leftVideo.captureStream) {
+    localstream = leftVideo.captureStream();
+    console.log('Captured stream from leftVideo with captureStream',
+        localstream);
+    //call();
+  } else if (leftVideo.mozCaptureStream) {
+    localstream = leftVideo.mozCaptureStream();
+    console.log('Captured stream from leftVideo with mozCaptureStream()',
+        localstream);
+    //call();
+  } else {
+    console.log('captureStream() not supported');
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const JOIN_ROOM = "JOIN_ROOM";
 const EXCHANGE = "EXCHANGE";
 const REMOVE_USER = "REMOVE_USER";
@@ -12,7 +94,6 @@ let localVideo;
 let remoteVideoContainer;
 
 let pcPeers = {};
-let localstream;
 
 
 const logError = error => console.warn("Whoops! Error:", error);
@@ -31,28 +112,37 @@ const broadcastData = (data) => {
   });
 }
 
+
 // Add event listener's to buttons
 // We need to do this now that our JS isn't handled by the asset pipeline
-document.addEventListener("DOMContentLoaded", () => {
 
-});
 
-//own video
-document.onreadystatechange = () => {
-  if (document.readyState === "interactive") {
-    navigator.mediaDevices
-      .getUserMedia({
-        audio: false,
-        video: true,
-      })
-      .then((stream) => {
-        localstream = stream;
-        localVideo.srcObject = stream;
-        localVideo.muted = true;
-      })
-      .catch(logError);
-  }
-};
+
+
+
+
+
+
+
+// //own video
+// //document.onreadystatechange = () => {
+//   if (document.readyState === "interactive") {
+//   //   navigator.mediaDevices
+//   //     .getUserMedia({
+//   //       audio: false,
+//   //       video: true,
+//   //     })
+//   //     .then((stream) => {
+//   //       localstream = stream;
+//   //       localVideo.srcObject = stream;
+//   //       localVideo.muted = true;
+//   //     })
+//   //     .catch(logError);
+//   // }
+
+// //};
+
+
 
 const handleJoinSession = async () => {
   console.log("moin")
@@ -69,6 +159,7 @@ const handleJoinSession = async () => {
       if (data.from === currentUser) return;
       switch (data.type) {
       case JOIN_ROOM:
+        console.log("case")
         return joinRoom(data);
       case EXCHANGE:
         if (data.to !== currentUser) return;
@@ -99,6 +190,7 @@ const handleLeaveSession = () => {
 
 const joinRoom = (data) => {
   // create a peerConnection to join a room
+  console.log("joinroom")
   createPC(data.from, true);
 };
 
@@ -111,6 +203,7 @@ const removeUser = (data) => {
 };
 
 const createPC = (userId, isOffer) => {
+  console.log("in create pc")
   // new instance of RTCPeerConnection
   // potentially create an "offer"
   // exchange SDP
@@ -119,10 +212,12 @@ const createPC = (userId, isOffer) => {
   // returns instance of peer connection
   let pc = new RTCPeerConnection(ice);
   pcPeers[userId] = pc;
+  console.log("test create pc")
 
-  for (const track of localstream.getTracks()) {
-    pc.addTrack(track, localstream);
-  }
+    for (const track of localstream.getTracks()) {
+      pc.addTrack(track, localstream);
+      console.log(track)
+    }
 
   console.log(isOffer && pc)
 
@@ -155,11 +250,15 @@ const createPC = (userId, isOffer) => {
   };
 
   pc.ontrack = (event) => {
-    const element = document.createElement("video");
-    element.id = `remoteVideoContainer+${userId}`;
-    element.autoplay = "autoplay";
-    element.srcObject = event.streams[0];
-    remoteVideoContainer.appendChild(element);
+    // const element = document.createElement("video");
+    // element.id = `remoteVideoContainer+${userId}`;
+    // element.autoplay = "autoplay";
+    // element.srcObject = event.streams[0];
+    // remoteVideoContainer.appendChild(element);
+
+    if (rightVideo.srcObject !== event.streams[0]) {
+      rightVideo.srcObject = event.streams[0];
+    }
   };
 
   pc.oniceconnectionstatechange = () => {

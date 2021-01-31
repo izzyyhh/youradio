@@ -2,6 +2,7 @@
 <div id='user-id' data-user-id='<%= current_user.id %>'></div>
 <div class='servers-index'>
     <p>Hi, <%= current_user.email %>, welcome to TestRadio!</p>
+
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
     <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 
@@ -41,8 +42,11 @@
 
 
 
+                <div id="player"></div>
 
+                
                 <div id="remote-video-container"></div>
+
                 <button id="join-button">
                     Join Room
                     </button>
@@ -52,8 +56,8 @@
                     </button>
                     
                 <video id="local-video" autoplay></video>
-            <%= video_tag "eminem.webm", width: "640", height: "480", controls: true %>
-
+            <%= video_tag "eminem.webm", width: "640", height: "480", controls: true, id: "leftVideo" %>
+            <video width="640" height="480" id="rightVideo" playsinline autoplay controls ></video>
 
 
 
