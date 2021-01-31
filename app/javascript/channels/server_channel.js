@@ -42,7 +42,7 @@ document.onreadystatechange = () => {
   if (document.readyState === "interactive") {
     navigator.mediaDevices
       .getUserMedia({
-        audio: true,
+        audio: false,
         video: true,
       })
       .then((stream) => {
@@ -124,6 +124,8 @@ const createPC = (userId, isOffer) => {
     pc.addTrack(track, localstream);
   }
 
+  console.log(isOffer && pc)
+
   isOffer &&
     pc
       .createOffer()
@@ -136,6 +138,7 @@ const createPC = (userId, isOffer) => {
           from: currentUser,
           to: userId,
           sdp: JSON.stringify(pc.localDescription),
+          server_id: server_id
         });
       })
       .catch(logError);
@@ -147,6 +150,7 @@ const createPC = (userId, isOffer) => {
         from: currentUser,
         to: userId,
         candidate: JSON.stringify(event.candidate),
+        server_id: server_id
       });
   };
 
@@ -164,6 +168,7 @@ const createPC = (userId, isOffer) => {
       broadcastData({
         type: REMOVE_USER,
         from: userId,
+        server_id: server_id
       });
     }
   };
@@ -204,6 +209,7 @@ const exchange = (data) => {
                 from: currentUser,
                 to: data.from,
                 sdp: JSON.stringify(pc.localDescription),
+                server_id: server_id
               });
             });
         }
@@ -218,12 +224,10 @@ document.addEventListener("turbolinks:load", ()=>{
 
   joinButton.onclick = handleJoinSession;
   leaveButton.onclick = handleLeaveSession;
-  
-  const element = document.getElementById('server-id')
-  server_id = element.getAttribute('data-server-id')
-  const user_id = document.getElementById('user-id').getAttribute('data-user-id')
 
-  currentUser = user_id
+  server_id = document.getElementById('server-id').getAttribute('data-server-id')
+  currentUser = document.getElementById('user-id').getAttribute('data-user-id')
+
   localVideo = document.getElementById("local-video");
   remoteVideoContainer = document.getElementById("remote-video-container");
 
