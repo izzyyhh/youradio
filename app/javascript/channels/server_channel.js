@@ -104,6 +104,7 @@ const broadcastData = (data) => {
     "content-type": "application/json",
     "X-CSRF-TOKEN": csrfToken,
   });
+  
 
   fetch("broadcastrtc", {
     method: "POST",
@@ -213,17 +214,17 @@ const createPC = (userId, isOffer) => {
   let pc = new RTCPeerConnection(ice);
   pcPeers[userId] = pc;
   console.log("test create pc")
-
+  if (currentUser==1) {
     for (const track of localstream.getTracks()) {
       pc.addTrack(track, localstream);
       console.log(track)
     }
-
+  }
   console.log(isOffer && pc)
 
   isOffer &&
     pc
-      .createOffer()
+      .createOffer({mandatory: { OfferToReceiveAudio: true, OfferToReceiveVideo: true }})
       .then((offer) => {
         return pc.setLocalDescription(offer);
       })
