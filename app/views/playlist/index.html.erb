@@ -2,7 +2,9 @@
 <% playlist = Server.find(params[:server_id]).playlist %>
 <% playlist.tracks.each do |t| %>
     {
-        "uri": "<%= t.uri %>"
+        "uri": "<%= t.uri %>",
+        "starttime": "<%= t.starttime.to_i %>",
+        "duration": "<%= t.duration %>"
     }
     <% if t != playlist.tracks.last %>
     ,
