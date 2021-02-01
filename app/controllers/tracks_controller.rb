@@ -12,14 +12,15 @@ class TracksController < ApplicationController
     apiKey = ENV.fetch("API_KEY")
     #ENV['DATABASE_URL']
     p "-----------------"
-    url = "https://www.googleapis.com/youtube/v3/videos?id=9bZkp7q19f0&part=contentDetails&key=" + apiKey
+    uri = params[:track][:uri]
+    youtube_id = get_youtube_id(uri)
+    url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{apiKey}"
     response = RestClient.get(url)
 
     struct = JSON.parse(response, object_class: OpenStruct)
     duration = struct.items[0].contentDetails.duration
     duration_in_s = convert_time(duration)
 
-    uri = params[:track][:uri]
     server_id = params[:track][:server_id]
     @playlist = Server.find(server_id).playlist
 
@@ -57,14 +58,27 @@ class TracksController < ApplicationController
   def tracks_params
     params.require(:track).permit(:uri)
   end
+
+  def convert_time(dur)
+    pattern = "PT"
+    pattern += "%HH" if dur.include? "H"
+    pattern += "%MM" if dur.include? "M"
+    pattern += "%SS"
+    DateTime.strptime(dur, pattern).seconds_since_midnight.to_i
+  end
+  
+  def get_youtube_id(url)
+    id = ''
+    url = url.gsub(/(>|<)/i,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)
+    if url[2] != nil
+      id = url[2].split(/[^0-9a-z_\-]/i)
+      id = id[0];
+    else
+      id = url;
+    end
+    id
+  end
+
 end
 
 
-
-def convert_time(dur)
-  pattern = "PT"
-  pattern += "%HH" if dur.include? "H"
-  pattern += "%MM" if dur.include? "M"
-  pattern += "%SS"
-  DateTime.strptime(dur, pattern).seconds_since_midnight.to_i
-end
