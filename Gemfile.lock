@@ -237,7 +237,6 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   json
   listen (~> 3.2)
-  msgpack (~> 1.4)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
   redis (~> 4.2)
