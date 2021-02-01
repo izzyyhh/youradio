@@ -231,7 +231,7 @@ function onPlayerStateChange(event) {
     //setTimeout(stopVideo, 6000);
     //done = true;
   } else if (event.data == YT.PlayerState.PAUSED) {
-    even
+    event.target.playVideo()
   }
   else if (event.data == YT.PlayerState.ENDED){
 
