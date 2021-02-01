@@ -39,9 +39,7 @@
 
                 <%= render 'tracks/form', track: Track.new %>
                 
-                <iframe width="420" height="315" allow="autoplay; fullscreen"
-                    src="https://www.youtube.com/embed/vrCSsaN4OJ8?autoplay=1" autoplay muted>
-                </iframe>
+                <div id ="player"></div>
             <% else %>
                 <h2><%= current_user.email %>, welcome to TestRadio </h2>
             <% end %>
@@ -51,3 +49,4 @@
 <% else %>
     <%= render 'shared/login' %>
 <% end %>
+<%= javascript_pack_tag 'youtubeplayer.js' %>

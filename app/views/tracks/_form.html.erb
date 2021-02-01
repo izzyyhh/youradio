@@ -1,4 +1,4 @@
-<%= form_for(track, remote: true) do |form| %>
+<%= form_for(track, remote: true, html: {id: "trackform"}) do |form| %>
   <div class="field">
     <%= form.label :uri %>
     <%= form.text_field :uri, id: 'uri-input' %>
@@ -7,6 +7,6 @@
   <%= form.hidden_field :server_id, value: @server.id %>
 
   <div class="actions">
-    <%= form.submit 'Add Track', data: { disable_with: false }%>
+    <%= form.submit 'Add Track', data: { disable_with: false }, id: 'addtrack' %>
   </div>
 <% end %>

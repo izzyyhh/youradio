@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_102443) do
+ActiveRecord::Schema.define(version: 2021_02_01_114438) do
 
   create_table "chatmessages", force: :cascade do |t|
     t.string "username"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2021_01_30_102443) do
     t.integer "playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "duration"
+    t.datetime "starttime"
     t.index ["playlist_id"], name: "index_tracks_on_playlist_id"
   end
 
