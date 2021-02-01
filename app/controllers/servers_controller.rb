@@ -13,8 +13,8 @@ class ServersController < ApplicationController
         else
             @servers = []
         end
-
-        render 'index'
+        
+        render 'index'        
     end
 
     def new

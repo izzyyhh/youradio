@@ -26,7 +26,7 @@ class TracksController < ApplicationController
 
     p "----------------------"
     if (@playlist.tracks.count == 0)
-      @track = Server.find(server_id).playlist.tracks.create(uri: uri, duration: duration_in_s, starttime:Time.now)
+      @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime:Time.now)
       p "das erste im empty"
     else 
       p time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
@@ -36,14 +36,14 @@ class TracksController < ApplicationController
       time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
 
       if !@playlist.tracks.first || (time - Time.now).seconds < 0
-        @track = Server.find(server_id).playlist.tracks.create(uri: uri, duration: duration_in_s, starttime:Time.now)
+        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime:Time.now)
         p 'first trackkkkkkkkkkkk creating for the time'
       else
         last_track = @playlist.tracks.last
         old_starttime = last_track.starttime 
         old_duration = last_track.duration
         this_starttime=old_starttime + duration_in_s.seconds
-        @track = Server.find(server_id).playlist.tracks.create(uri: uri, duration: duration_in_s, starttime: this_starttime)
+        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime: this_starttime)
         p 'first track existent'
       end
 
