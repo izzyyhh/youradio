@@ -60,4 +60,4 @@ gem "redis", "~> 4.2"
 gem 'rest-client'
 gem 'json'
 
-gem "msgpack", "~> 1.4.1"
+gem "msgpack", "~> 1.4"
