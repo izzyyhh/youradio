@@ -13,7 +13,7 @@
                 <% @servers.each do |server| %>
 
                 <div class="server-link">
-                    <%= link_to server.name, server_path(server.id) %>
+                    <%= link_to server.name, server_path(server.id), method: :get %>
                 </div>
                 <% end %>
                 <%= link_to "+", new_server_path, class: "create-server" %>
