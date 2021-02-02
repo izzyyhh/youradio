@@ -34,7 +34,7 @@ class ServersController < ApplicationController
     end
 
     def server_params
-        params.require(:server).permit(:name)
+        params.require(:server).permit(:name, :serverpic)
     end
 end
 
