@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_02_090304) do
+ActiveRecord::Schema.define(version: 2021_02_02_200349) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,10 @@ ActiveRecord::Schema.define(version: 2021_02_02_090304) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "duration"
     t.datetime "starttime"
+    t.text "description"
+    t.string "title"
+    t.string "thumbnail"
+    t.string "channeltitle"
     t.index ["playlist_id"], name: "index_tracks_on_playlist_id"
   end
 

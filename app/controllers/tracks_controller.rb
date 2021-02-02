@@ -15,9 +15,19 @@ class TracksController < ApplicationController
     uri = params[:track][:uri]
     youtube_id = get_youtube_id(uri)
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{apiKey}"
+    details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{apiKey}"
     response = RestClient.get(url)
 
+    p "------------------"
+    p JSON.parse(response, object_class: OpenStruct)
     struct = JSON.parse(response, object_class: OpenStruct)
+    details = JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
+
+    title = details.items[0].snippet.title
+    description = details.items[0].snippet.description
+    thumbnail = details.items[0].snippet.thumbnails.medium.url
+    channeltitle = details.items[0].snippet.channelTitle
+    #mehr details title, description, thumbnail,  channeltitle
     duration = struct.items[0].contentDetails.duration
     duration_in_s = convert_time(duration)
 
@@ -26,7 +36,11 @@ class TracksController < ApplicationController
 
     p "----------------------"
     if (@playlist.tracks.count == 0)
-      @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime:Time.now)
+      @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
+        starttime: Time.now, title: title,
+        channeltitle: channeltitle, description: description,
+        thumbnail: thumbnail)
+        
       p "das erste im empty"
     else 
       p time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
@@ -36,14 +50,21 @@ class TracksController < ApplicationController
       time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
 
       if !@playlist.tracks.first || (time - Time.now).seconds < 0
-        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime:Time.now)
+        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
+          starttime: Time.now, title: title,
+          channeltitle: channeltitle, description: description,
+          thumbnail: thumbnail)
+
         p 'first trackkkkkkkkkkkk creating for the time'
       else
         last_track = @playlist.tracks.last
         old_starttime = last_track.starttime 
         old_duration = last_track.duration
         this_starttime=old_starttime + duration_in_s.seconds
-        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s, starttime: this_starttime)
+        @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
+                                                        starttime: this_starttime, title: title,
+                                                        channeltitle: channeltitle, description: description,
+                                                        thumbnail: thumbnail)
         p 'first track existent'
       end
 

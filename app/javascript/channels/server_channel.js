@@ -97,16 +97,16 @@ function onPlayerReady(event) {
             }
 
             setTimeout(() => {
-              if (player.getPlayerState() === -1) {
+              if (player.getPlayerState() === -1 || player.getPlayerState() === 3) {
                 player.loadVideoById({videoId: curId})
               }
-            }, 100)
+            }, 300)
             
             setTimeout(()=> {
               if (player.getPlayerState() === 0) {
                 player.seekTo(trackTimePosition, true)
               }
-            }, 100)
+            }, 400)
 
             showList(trackToPlay, playlist, "append")
 
@@ -159,6 +159,7 @@ function fetchPlaylistAndPlayVideo(){
         if(delta > 0 ){
           //lied ist noch nicht vorbei
           trackToPlay = track
+          console.log(track)
           trackTimePosition = duration - delta
           break
         }
@@ -176,6 +177,8 @@ function fetchPlaylistAndPlayVideo(){
     player.loadVideoById({videoId: curId})
     
     setTimeout(()=> {
+      console.log("seekoti")
+      console.log(trackTimePosition)
       player.seekTo(trackTimePosition, true)
       console.log(player.getVideoData()['video_id'])         
     }, 300)
@@ -197,7 +200,7 @@ function showList(trackToPlay, playlist, type){
       
       for(let i = trackIndex; i < playlist.length; i++){
         let li = document.createElement('li')
-        li.innerText = playlist[i].uri
+        li.innerText = playlist[i].title
         playlistElement.appendChild(li)
       }
       
@@ -208,7 +211,7 @@ function showList(trackToPlay, playlist, type){
     console.log("playlist")
     let track=playlist[i-1]
     let newTrack = document.createElement('li')
-    newTrack.innerText = track.uri
+    newTrack.innerText = track.title
     playlistElement.appendChild(newTrack)
   }  
 }
