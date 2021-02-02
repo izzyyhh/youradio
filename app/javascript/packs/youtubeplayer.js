@@ -1,12 +1,29 @@
 console.log("hi")
+let addTrackSection
+let isOpen = false
 
+document.addEventListener('DOMContentLoaded', () => {
+    addTrackSection = document.querySelector('.add-track-section')
+    disappear()
 
+    let addTrackButton = document.querySelector('.add-track-button')
+    addTrackButton.addEventListener('click', () => {
 
-// var tag = document.createElement('script');
+        if(!isOpen){
+            appear()
+        } else{
+            disappear()
+        }
+    })
 
-// tag.src = "https://www.youtube.com/iframe_api";
-// var firstScriptTag = document.getElementsByTagName('script')[0];
-// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+})
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
+function disappear() {
+    addTrackSection.style.visibility="hidden"
+    isOpen = false
+}
+
+function appear() {
+    addTrackSection.style.visibility="initial"
+    isOpen = true
+}

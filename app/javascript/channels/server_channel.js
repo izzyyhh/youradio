@@ -4,8 +4,10 @@ import consumer from "./consumer"
 let server_id
 let playlist
 let player
+let playlistElement
 
 document.addEventListener('DOMContentLoaded', ()=> {
+  playlistElement = document.querySelector(".playlist__tracklist")
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -106,6 +108,8 @@ function onPlayerReady(event) {
               }
             }, 100)
 
+            showList(trackToPlay, playlist, "append")
+
           })   
         }
       }
@@ -175,8 +179,38 @@ function fetchPlaylistAndPlayVideo(){
       player.seekTo(trackTimePosition, true)
       console.log(player.getVideoData()['video_id'])         
     }, 300)
+    
+    showList(trackToPlay, playlist, "load")
 
   })
+}
+
+function showList(trackToPlay, playlist, type){
+  const LOAD = "load"
+  let trackIndex
+  console.log(type)
+  if(type == LOAD){
+    playlistElement.innerHTML=""
+    
+    if(trackToPlay != undefined){
+      trackIndex = playlist.findIndex(t => t.starttime == trackToPlay.starttime)
+      
+      for(let i = trackIndex; i < playlist.length; i++){
+        let li = document.createElement('li')
+        li.innerText = playlist[i].uri
+        playlistElement.appendChild(li)
+      }
+      
+    }//derzeit kein lied vorhanden
+  } else {
+    
+    let i =playlist.length
+    console.log("playlist")
+    let track=playlist[i-1]
+    let newTrack = document.createElement('li')
+    newTrack.innerText = track.uri
+    playlistElement.appendChild(newTrack)
+  }  
 }
 
 

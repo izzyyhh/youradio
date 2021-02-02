@@ -18,11 +18,9 @@
                 <%= render 'playlist' %>
                 <%= render 'chat' %>
                 <%= render 'memberlist' %>
-                
-                <h2> TRACK </h2>
+                <%= render 'addtrackmodal' %>
+                <button class="add-track-button">Click</button>
 
-                <%= render 'tracks/form', track: Track.new %>
-                <div id=>
                 <div id ="player"></div>
             <% else %>
                 <h2><%= current_user.email %>, welcome to TestRadio </h2>
