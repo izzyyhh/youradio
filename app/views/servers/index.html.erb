@@ -6,48 +6,29 @@
 
     <div class='swrap'>
 
-        <div class='servers-stem'>
-            <h1>Servers</h1>
-
-            <div class="servers_list">
-                <% @servers.each do |server| %>
-
-                <div class="server-link">
-                    <%= link_to server.name, server_path(server.id), method: :get %>
-                </div>
-                <% end %>
-                <%= link_to "+", new_server_path, class: "create-server" %>
-            </div>
-        </div>
-
-
+        <%= render 'serverlist'%>
 
         <div class="server-content">
             <% if @server.present? %>
+
             <% if @server.serverpic.attached? %>
                 <%= image_tag url_for(@server.serverpic) %>
             <% end %>
 
-                <h2>Chat</h2>
-                <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
-                <%= @server.name %>
-
-                <div id='server-messages'>
-                    <% @server.chatmessages.each do |message| %>
-                        <%= render 'chatmessages/message' , message: message %>
-                    <% end %>
-                </div>
-
-                <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+                <%= render 'playlist' %>
+                <%= render 'chat' %>
+                <%= render 'memberlist' %>
+                
                 <h2> TRACK </h2>
 
                 <%= render 'tracks/form', track: Track.new %>
-                
+                <div id=>
                 <div id ="player"></div>
             <% else %>
                 <h2><%= current_user.email %>, welcome to TestRadio </h2>
             <% end %>
         </div>
+
     </div>
 </div>
 <% else %>

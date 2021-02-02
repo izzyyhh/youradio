@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         'rel' : 0,
         'showinfo' : 0
       },
-      videoId: 'M7lc1UVf-VE',
+      videoId: '',
       events: {
         'onReady': onPlayerReady,
         'onStateChange': onPlayerStateChange

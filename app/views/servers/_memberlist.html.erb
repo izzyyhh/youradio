@@ -1,0 +1,12 @@
+<% members = User.joins(:servers_users).where(:servers_users => {:server_id => @server.id })%>
+<div class='memberlist'>
+    <h3>Memberlist</h3>
+    <ul>
+        <li class='memberlist__current-user'><%= current_user.email %></li>
+        <% members.each do |m| %>
+            <% if m != current_user %>
+                <li class='memberlist__user'><%= m.email %></li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>

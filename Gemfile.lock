@@ -113,11 +113,13 @@ GEM
     mime-types-data (3.2020.1104)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.3)
     msgpack (1.4.2)
     netrc (0.11.0)
     nio4r (2.5.4)
-    nokogiri (1.11.1-x86_64-linux)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (0.21.0)
@@ -231,7 +233,10 @@ GEM
 
 PLATFORMS
   ruby
+<<<<<<< HEAD
   x86_64-linux
+=======
+>>>>>>> feature-add-member-to-server
 
 DEPENDENCIES
   activestorage-validator
@@ -263,4 +268,4 @@ RUBY VERSION
    ruby 2.7.1p83
 
 BUNDLED WITH
-   2.2.7
+   2.0.2
