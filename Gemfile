@@ -65,3 +65,4 @@ gem "redis", "~> 4.2"
 gem 'rest-client'
 gem 'json'
 gem 'activestorage-validator'
+gem 'rake'

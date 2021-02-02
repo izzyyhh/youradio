@@ -244,6 +244,7 @@ DEPENDENCIES
   pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
+  rake
   redis (~> 4.2)
   rest-client
   sass-rails (>= 6)
