@@ -4,15 +4,20 @@
 
     
     <div class="memberlist__search">
-    <button class="memberlist__searchbar"></button>
+    <button class="memberlist__searchbar"><span>Search</span><span><i class="fas fa-search fa-lg"></span></i></button>
     </div>
-    <ul>
+    <ul class="memberlist__list">
         <li class="memberlist__current-text">Current User</li>
-        <li class='memberlist__current-user'><%= current_user.email %></li>
+        <li class='memberlist__current-user'><div class="memberlist__user"><span class="memberlist__userpic"><span><span class="memberlist__current-user__name"><%= current_user.email %><span></div></li>
         <li class="memberlist__member-text">Member</li>
         <% members.each do |m| %>
             <% if m != current_user %>
-                <li class='memberlist__user'><%= m.email %></li>
+                <% if m.profilepic.attached? %>
+                    <li class='memberlist__user'><div class="memberlist__user"><span class="memberlist__userpic"><%= image_tag(url_for(m.profilepic)) %></span><span class="memberlist__current-user__name"><%= m.email %></span></div></li>
+                <% else %>
+                    <li class='memberlist__user'><div class="memberlist__user"><span class="memberlist__userini"><%=  m.name.upcase[0..1] %></span><span class="memberlist__current-user__name"><%= m.email %></span></div></li>
+
+                <% end %>
             <% end %>
         <% end %>
     </ul>
