@@ -1,12 +1,19 @@
 <% if user_signed_in? %>
 <div class='wrapper'>
         <%= render 'serverlist'%>
-        <div class="playlist">playlist</div>
+        <%= render 'playlist' %>
+
+        <%= render 'addtrackmodal' %>
+                <button class="add-track-button">Click</button>
         <div class="topbar">topbar</div>
         <div class="chat">chat</div>
         <div class="memberlist">memberlist</div>
         <div class="musicbar">musicbar</div>
 <div>
+        <div id ="player"></div>
+        <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
+
+
 <!--
 <div class='servers-index'>
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
