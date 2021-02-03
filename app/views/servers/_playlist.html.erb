@@ -1,7 +1,7 @@
 <div class='playlist'>
-    <div class="playlist__name"><%= @server.try(:name) %><i class="server-leiste__home-icon fas fa-arrow-down"></i></div>
+    <div class="playlist__name"><span class="playlist__helper"><%= @server.try(:name) %></span></div>
+    <div class="playlist__main"><i class="playlist__icon fas fa-list-ul"></i>Warteschlange</div>
     <ul class='playlist__tracklist'>
-        <li class="playlist__main"><i class="playlist__icon fas fa-list-ul"></i>Warteschlange</li>
     </ul>
 </div>
 

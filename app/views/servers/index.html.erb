@@ -1,11 +1,14 @@
 <% if user_signed_in? %>
+<div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 <div class='wrapper'>
-        <%= render 'serverlist'%>
+<%= render 'serverlist'%>
+<% if @server.present? %>
         <%= render 'playlist' %>
         <% if @server.present? %>
             <%= render 'addtrackmodal' %>
             <div class="chat">chat</div>
             <div class="memberlist">memberlist</div>
+        <%= render 'memberlist' %>
 
             <button class="add-track-button">Click</button>
         <% end %>
@@ -14,7 +17,7 @@
 <div>
         <div id ="player"></div>
         <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
-
+<% end%>
 
 <!--
 <div class='servers-index'>

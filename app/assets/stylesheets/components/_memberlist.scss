@@ -1,0 +1,39 @@
+@import '../utilities/variables';
+
+.memberlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $color-background-playlist;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+}
+
+.memberlist__name {
+    color: $color-white;
+    font-size: 1.2rem;
+    border-bottom: 1px solid $color-text-grey;
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.memberlist__add {
+    text-decoration: none;
+    color: $color-click;
+    cursor: pointer;
+}
+
+.memberlist__current-user {
+    color: white;
+}

@@ -1,8 +1,15 @@
 <% members = User.joins(:servers_users).where(:servers_users => {:server_id => @server.id })%>
 <div class='memberlist'>
-    <h3>Memberlist</h3>
+    <div class="memberlist__name"><span class="memberlist__helper">Memberlist</span><%= link_to "<i class='fas fa-user-plus'></i>".html_safe, new_servers_user_path(:server_id => @server.id), class: "memberlist__add"%></div>
+
+    
+    <div class="memberlist__search">
+    <button class="memberlist__searchbar"></button>
+    </div>
     <ul>
+        <li class="memberlist__current-text">Current User</li>
         <li class='memberlist__current-user'><%= current_user.email %></li>
+        <li class="memberlist__member-text">Member</li>
         <% members.each do |m| %>
             <% if m != current_user %>
                 <li class='memberlist__user'><%= m.email %></li>
@@ -10,3 +17,7 @@
         <% end %>
     </ul>
 </div>
+<%= link_to '', destroy_user_session_path, method: :delete %>
+
+
+ 

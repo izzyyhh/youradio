@@ -220,8 +220,8 @@ function showList(trackToPlay, playlist, type){
     console.log("playlist")
     let track=playlist[i-1]
     let newTrack = document.createElement('li')
-    li.innerHTML= "<i class='playlist__icon fas fa-music'></i>" + track.title
-    li.className="playlist__song"
+    newTrack.innerHTML= "<i class='playlist__icon fas fa-music'></i>" + track.title
+    newTrack.className="playlist__song"
     //newTrack.innerText = track.title
     playlistElement.appendChild(newTrack)
   }  
