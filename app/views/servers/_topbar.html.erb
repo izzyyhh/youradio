@@ -1,10 +1,10 @@
 <div class='topbar'>
-    <div>
+    <div class='topbar__user'>
         <% if current_user.profilepic.attached? %>
-            <div><%= image_tag(url_for(current_user.profilepic)) %></div>
+            <div class='topbar__userpic'><%= image_tag(url_for(current_user.profilepic)) %></div>
             <span><%= current_user.name %></span>
         <% else %>
-            <div><%= image_tag("default_pp.png")%></div>
+            <div class='topbar__userpic'><%= image_tag("default_pp.png")%></div>
             <span><%= current_user.name %></span>
         <% end %>
     </div>
