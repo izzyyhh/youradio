@@ -57,10 +57,11 @@ class TracksController < ApplicationController
 
         p 'first trackkkkkkkkkkkk creating for the time'
       else
+        p "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         last_track = @playlist.tracks.last
         old_starttime = last_track.starttime 
         old_duration = last_track.duration
-        this_starttime=old_starttime + duration_in_s.seconds
+        this_starttime= old_starttime + old_duration.seconds
         @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
                                                         starttime: this_starttime, title: title,
                                                         channeltitle: channeltitle, description: description,
