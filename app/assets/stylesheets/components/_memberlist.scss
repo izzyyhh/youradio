@@ -13,7 +13,8 @@
 
 .memberlist__name {
     color: $color-white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     border-bottom: 1px solid rgba(255, 255, 255, 0.239);
     width: 100%;
     text-align: left;
@@ -75,10 +76,12 @@
 }
 
 .memberlist__current-text {
+    font-size: .9rem;
     font-weight: bolder;
 }
 
 .memberlist__member-text {
+    font-size: .9rem;
     font-weight: bolder;
     margin-top: 10px;
 }
@@ -106,7 +109,6 @@
 
 .memberlist__user-name {
     padding-left: 10px;
-    font-weight: lighter;
     font-size: 0.8rem;
 }
 
