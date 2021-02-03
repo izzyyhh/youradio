@@ -4,18 +4,24 @@
 
     
     <div class="memberlist__search">
-    <button class="memberlist__searchbar"><span>Search</span><span><i class="fas fa-search fa-lg"></span></i></button>
+    <button class="memberlist__searchbar"><span>Future Feauture: Search</span><span><i class="fas fa-search fa-lg"></span></i></button>
     </div>
     <ul class="memberlist__list">
+
         <li class="memberlist__current-text">Current User</li>
-        <li class='memberlist__current-user'><div class="memberlist__user"><span class="memberlist__userpic"><span><span class="memberlist__current-user__name"><%= current_user.email %><span></div></li>
+        <% if current_user.profilepic.attached? %>
+            <li class='memberlist__user'><div class="memberlist__user-data"><span class="memberlist__userpic"><%= image_tag(url_for(current_user.profilepic)) %></span><span class="memberlist__user-name"><%= current_user.name %></span></div></li>
+        <% else %>
+            <li class='memberlist__user'><div class="memberlist__user-data"><span class="memberlist__userpic"><%= image_tag("default_pp.png") %></span><span class="memberlist__user-name memberlist__user-name--color"><%= current_user.name %></span></div></li>
+        <% end %>
+        
         <li class="memberlist__member-text">Member</li>
         <% members.each do |m| %>
             <% if m != current_user %>
                 <% if m.profilepic.attached? %>
-                    <li class='memberlist__user'><div class="memberlist__user"><span class="memberlist__userpic"><%= image_tag(url_for(m.profilepic)) %></span><span class="memberlist__current-user__name"><%= m.email %></span></div></li>
+                    <li class='memberlist__user'><div class="memberlist__user-data"><span class="memberlist__userpic"><%= image_tag(url_for(m.profilepic)) %></span><span class="memberlist__user-name"><%= m.name %></span></div></li>
                 <% else %>
-                    <li class='memberlist__user'><div class="memberlist__user"><span class="memberlist__userini"><%=  m.name.upcase[0..1] %></span><span class="memberlist__current-user__name"><%= m.email %></span></div></li>
+                    <li class='memberlist__user'><div class="memberlist__user-data"><span class="memberlist__userpic"><%= image_tag("default_pp.png") %></span><span class="memberlist__user-name"><%= m.name %></span></div></li>
 
                 <% end %>
             <% end %>

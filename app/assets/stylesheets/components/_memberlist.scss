@@ -14,7 +14,7 @@
 .memberlist__name {
     color: $color-white;
     font-size: 1.2rem;
-    border-bottom: 1px solid $color-text-grey;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.239);
     width: 100%;
     text-align: left;
     padding-left: 10px;
@@ -83,3 +83,33 @@
     margin-top: 10px;
 }
 
+.memberlist__user {
+    width: 100%;
+}
+.memberlist__user-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    padding:0;
+}
+
+.memberlist__userpic {
+    img {
+
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+}
+
+.memberlist__user-name {
+    padding-left: 10px;
+    font-weight: lighter;
+    font-size: 0.8rem;
+}
+
+.memberlist__user-name--color {
+    color: $color-click;
+}
