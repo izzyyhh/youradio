@@ -8,27 +8,34 @@
     background-color: #1C1C1C;
 
 
-    a{
-        display: block;
+    a {
+        position: relative;
+        color: $color-click;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100% ;
+        height: 3.5rem;
+        width: 3.5rem;
         background-color: $color-background-playlist;
-        height: 3rem;
-        width: 3rem;
-        border-radius: 50%;
-        display: inline-block;
-        margin-top: 10px;
         cursor: pointer; 
+        margin-top: .5rem;
     }
 }
 .serverbar__home{
-    margin-left: 0.8rem;
-    margin-top: 1rem;
-    color: $color-click;
+}
+.serverbar__home-icon{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-55%);
 }
 .serverbar__dot {
 
 }
 .serverbar_add {
-
+    margin: auto;
+    justify-self: flex-end;
 }
 .serverbar__dot--active {
     border: 5px solid #A9DBA8;
