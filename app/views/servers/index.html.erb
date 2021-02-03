@@ -12,7 +12,7 @@
 
             <button class="add-track-button">Click</button>
         <% end %>
-        <div class="topbar">topbar</div>
+        <%= render 'topbar' %>
         <div class="musicbar">musicbar</div>
         <div id ="player"></div>
         <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
