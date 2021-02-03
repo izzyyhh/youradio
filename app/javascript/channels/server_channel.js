@@ -94,19 +94,20 @@ function onPlayerReady(event) {
             let curId
             if (trackToPlay) {
               curId=trackToPlay.uri
+              
               player.playVideo()
               
               setTimeout(() => {
                 if (player.getPlayerState() === -1 || player.getPlayerState() === 3) {
-                  player.loadVideoById({videoId: curId})
+                  player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
                 }
               }, 300)
               
-              setTimeout(()=> {
-                if (player.getPlayerState() === 0) {
-                  player.seekTo(trackTimePosition, true)
-                }
-              }, 400)
+              // setTimeout(()=> {
+              //   if (player.getPlayerState() === 0) {
+              //     player.seekTo(trackTimePosition, true)
+              //   }
+              // }, 400)
             }
 
 
@@ -175,15 +176,15 @@ function fetchPlaylistAndPlayVideo(){
     if (trackToPlay) {
       curId=trackToPlay.uri
       
-      player.playVideo()
-      player.loadVideoById({videoId: curId})
+      // player.playVideo()
+      player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
       
-      setTimeout(()=> {
-        console.log("seekoti")
-        console.log(trackTimePosition)
-        player.seekTo(trackTimePosition, true)
-        console.log(player.getVideoData()['video_id'])         
-      }, 300)
+      // setTimeout(()=> {
+      //   console.log("seekoti")
+      //   console.log(trackTimePosition)
+      //   player.seekTo(trackTimePosition, true)
+      //   console.log(player.getVideoData()['video_id'])         
+      // }, 300)
     }
 
     // 2. This code loads the IFrame Player API code asynchronously. But is no promise
