@@ -25,14 +25,15 @@
   
 /* Hide scrollbar for IE, Edge and Firefox */
 .playlist__tracklist {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .playlist__name {
     color: $color-white;
-    font-size: 1.2rem;
-    border-bottom: 1px solid $color-text-grey;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.239);
     width: 100%;
     text-align: left;
     padding-left: 10px;
@@ -55,8 +56,13 @@ scrollbar-width: none;  /* Firefox */
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 10px;
-    font-size: 1rem;
-    border-bottom: 1px solid $color-text-grey;
+    font-size: .9rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.239);
+
+    i {
+        font-size: 1.2rem;
+    }
 }
 
 .playlist__song {
@@ -65,8 +71,8 @@ scrollbar-width: none;  /* Firefox */
     text-align: start;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: $color-background-chat;
-    border-bottom: 1px solid $color-text-grey;
+    background-color: #20262ad0;
+    border-bottom: 1px solid  rgba(255, 255, 255, 0.239);
     padding-left: 10px;
     font-weight: lighter;
 }
@@ -82,8 +88,4 @@ scrollbar-width: none;  /* Firefox */
     margin-left: 0.8rem;
     margin-top: 1rem;
     color: $color-click;
-}
-
-.playlist__song:hover {
-    background-color: $color-background-playlist; 
 }
