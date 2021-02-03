@@ -1,0 +1,62 @@
+@import '../utilities/variables';
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $color-background-playlist;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+}
+
+.playlist__name {
+    color: $color-white;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-text-grey;
+    width: 100%;
+    text-align: center;
+}
+
+.playlist__icon {
+    color: $color-white;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.playlist__main {
+    width:100%;
+    color: $color-white;
+    text-align: start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.playlist__song {
+    width:100%;
+    color: $color-white;
+    text-align: start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: $color-background-chat;
+    border-bottom: 1px solid $color-text-grey;
+}
+
+.playlist__song--next {
+    color: $color-text-grey;
+    font-size: 12px;
+    font-weight: lighter;
+    margin-left: 20px;
+}
+
+.server-leiste__home-icon {
+    margin-left: 0.8rem;
+    margin-top: 1rem;
+    color: $color-click;
+}
+
+.playlist__song:hover {
+    background-color: $color-background-playlist; 
+}

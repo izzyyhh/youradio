@@ -1,13 +1,9 @@
- <div class='servers-stem'>
-            <h1>Servers</h1>
+<div class='serverbar'>
+    <%= link_to "<i class='serverbar__home-icon fas fa-home fa-lg'></i>".html_safe, servers_path, class: "serverbar__home"%>
+    <% @servers.each do |server| %>
 
-            <div class="servers_list">
-                <% @servers.each do |server| %>
+        <%= link_to server.name, server_path(server.id), method: :get, class: "serverbar__dot" %>
 
-                <div class="server-link">
-                    <%= link_to server.name, server_path(server.id), method: :get %>
-                </div>
-                <% end %>
-                <%= link_to "+", new_server_path, class: "create-server" %>
-            </div>
-        </div>
+    <% end %>
+    <%= link_to "<i class='serverbar__add-icon fas fa-plus fa-lg'></i>".html_safe, new_server_path, class: "serverbar_add" %>
+</div>

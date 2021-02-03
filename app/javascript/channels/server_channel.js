@@ -207,7 +207,9 @@ function showList(trackToPlay, playlist, type){
       
       for(let i = trackIndex; i < playlist.length; i++){
         let li = document.createElement('li')
-        li.innerText = playlist[i].title
+        //li.innerText = playlist[i].title
+        li.innerHTML= "<i class='playlist__icon fas fa-music'></i>" + playlist[i].title
+        li.className="playlist__song"
         playlistElement.appendChild(li)
       }
       
@@ -218,7 +220,9 @@ function showList(trackToPlay, playlist, type){
     console.log("playlist")
     let track=playlist[i-1]
     let newTrack = document.createElement('li')
-    newTrack.innerText = track.title
+    li.innerHTML= "<i class='playlist__icon fas fa-music'></i>" + track.title
+    li.className="playlist__song"
+    //newTrack.innerText = track.title
     playlistElement.appendChild(newTrack)
   }  
 }

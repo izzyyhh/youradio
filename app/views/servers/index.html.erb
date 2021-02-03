@@ -1,6 +1,14 @@
 <% if user_signed_in? %>
+<div class='wrapper'>
+        <%= render 'serverlist'%>
+        <div class="playlist">playlist</div>
+        <div class="topbar">topbar</div>
+        <div class="chat">chat</div>
+        <div class="memberlist">memberlist</div>
+        <div class="musicbar">musicbar</div>
+<div>
+<!--
 <div class='servers-index'>
-    <p>Hi, <%= current_user.name %>, welcome to TestRadio!</p>
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
     <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 
@@ -29,6 +37,7 @@
 
     </div>
 </div>
+-->
 <% else %>
     <%= render 'shared/login' %>
 <% end %>

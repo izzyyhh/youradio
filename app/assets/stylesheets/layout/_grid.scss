@@ -1,0 +1,39 @@
+.wrapper {
+    max-width: 2000px;
+    background-color: yellow;
+    display: grid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    grid-template-areas: "serverbar playlist topbar memberlist"
+                         "serverbar playlist chat memberlist"
+                         "serverbar musicbar musicbar musicbar";
+    grid-template-columns: 70px 230px 1fr 230px;
+    grid-template-rows: 50px 1fr 100px;
+}
+.serverbar {
+    background-color: red;
+    grid-area: serverbar;
+}
+.playlist {
+
+    grid-area: playlist;
+}
+.topbar {
+    background-color: green;
+    grid-area: topbar;
+}
+.memberlist {
+    background-color: pink;
+    grid-area: memberlist;
+}
+.chat{
+    background-color: white;
+    grid-area: chat;
+}
+.musicbar{
+    background-color: black;
+    grid-area: musicbar;
+}

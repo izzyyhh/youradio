@@ -1,0 +1,35 @@
+@import '../utilities/variables';
+
+.serverbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #1C1C1C;
+
+
+    a{
+        display: block;
+        background-color: $color-background-playlist;
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        display: inline-block;
+        margin-top: 10px;
+        cursor: pointer; 
+    }
+}
+.serverbar__home{
+    margin-left: 0.8rem;
+    margin-top: 1rem;
+    color: $color-click;
+}
+.serverbar__dot {
+
+}
+.serverbar_add {
+
+}
+.serverbar__dot--active {
+    border: 5px solid #A9DBA8;
+}
