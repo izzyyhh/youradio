@@ -7,10 +7,9 @@
             <% if @server.present? %>
                 <%= render 'addtrackmodal' %>
                 <div class="chat">chat</div>
-                
+                <%= render 'musicbar' %>
                 <%= render 'memberlist' %>
-
-                <button class="add-track-button">Click</button>
+                
             <% end %>
             <%= render 'topbar' %>
             <div id ="player"></div>

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addTrackSection = document.querySelector('.add-track-section')
     disappear()
 
-    let addTrackButton = document.querySelector('.add-track-button')
+    let addTrackButton = document.querySelector('.musicbar__link')
     addTrackButton.addEventListener('click', () => {
 
         if(!isOpen){
