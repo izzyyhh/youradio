@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 <div class='servers-index'>
-    <p>Hi, <%= current_user.email %>, welcome to TestRadio!</p>
+    <p>Hi, <%= current_user.name %>, welcome to TestRadio!</p>
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
     <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 
@@ -23,7 +23,7 @@
 
                 <div id ="player"></div>
             <% else %>
-                <h2><%= current_user.email %>, welcome to TestRadio </h2>
+                <h2><%= current_user.name %>, welcome to TestRadio </h2>
             <% end %>
         </div>
 

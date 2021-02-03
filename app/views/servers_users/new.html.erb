@@ -4,18 +4,11 @@
 <% users_not_added = users.select{|u| !users_already_added.include?(u) } %>
 
 <%= form_for @servers_users do |f| %>
-    <!--
-    <div>
-        <%= label_tag(:user_email, "Email of user") %>
-        <%= email_field_tag(:user_email) %>
-    </div>
-    -->
-
     <%= f.hidden_field :server_id, value: @server_id %>
     <% users_not_added.each do |u| %>
         <div>
 
-            <label><%= check_box_tag 'users[]', u.email %><%= u.email %></label>
+            <label><%= check_box_tag 'users[]', u.email %><%= u.name %> --> <%= u.email %></label>
             
         </div>
     <% end %>
