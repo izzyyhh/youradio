@@ -2,12 +2,14 @@
 <div class='wrapper'>
         <%= render 'serverlist'%>
         <%= render 'playlist' %>
+        <% if @server.present? %>
+            <%= render 'addtrackmodal' %>
+            <div class="chat">chat</div>
+            <div class="memberlist">memberlist</div>
 
-        <%= render 'addtrackmodal' %>
-                <button class="add-track-button">Click</button>
+            <button class="add-track-button">Click</button>
+        <% end %>
         <div class="topbar">topbar</div>
-        <div class="chat">chat</div>
-        <div class="memberlist">memberlist</div>
         <div class="musicbar">musicbar</div>
 <div>
         <div id ="player"></div>
