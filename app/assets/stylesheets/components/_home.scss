@@ -19,7 +19,16 @@
 .home__card {
     padding: 1rem;
     max-width: 1000px;
+    margin-bottom: 20px;
     box-shadow: 0 18px 26px rgba(0, 0, 0, 0.6);
     -webkit-box-shadow:  0 18px 26px rgba(0, 0, 0, 0.6);
     -moz-box-shadow:  0 18px 26px rgba(0, 0, 0, 0.6);  
+}
+
+.home__sub-heading {
+    color: whitesmoke;
+    font-family: $rokkit;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
 }
