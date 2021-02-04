@@ -1,7 +1,6 @@
 <div class="chat">
     <h2 class="chat__heading"><%= @server.name %> Chat</h2>
     <div id='server-messages'>
-        <div id ="player"></div>
             <% @server.chatmessages.each do |message| %>
                 <%= render 'chatmessages/message' , message: message %>
             <% end %>
