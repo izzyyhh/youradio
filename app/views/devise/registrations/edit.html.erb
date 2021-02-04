@@ -11,7 +11,7 @@
       <% if current_user.profilepic.attached? %>
       <div class='topbar__userpic edit__pp'><%= image_tag(url_for(current_user.profilepic)) %></div>
       <% else %>
-          <div class='topbar__userpic'><%= image_tag("default_pp.png")%></div>
+          <div class='topbar__userpic edit__pp'><%= image_tag("default_pp.png")%></div>
       <% end %>
 
     <div class='login__heading'><%= current_user.name %></div>
