@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
       }
     });
   }
+
+  addSoundSettings()
 })
 
 
@@ -270,6 +272,53 @@ function showTitlesInMusicBar(currentTrack){
   } else {
     trackTitleNextElement.innerText = ''
   }
+}
+
+function addSoundSettings() {
+  const icon = document.getElementById('sound__icon')
+  const range= document.getElementById('sound__range')
+  icon.addEventListener('click',() => {
+    if (player.isMuted()) {
+      player.unMute()
+      player.setVolume(30)
+      range.value="30"
+
+      icon.innerHTML =""
+      let i = document.createElement('i')
+      i.className = "fas fa-volume-up"
+      icon.appendChild(i)
+
+    } else {
+      player.mute()
+      range.value="0"
+      icon.innerHTML =""
+      let i = document.createElement('i')
+      i.className = "fas fa-volume-mute"
+      icon.appendChild(i)
+    }
+
+  })
+
+  range.addEventListener('input', () => {
+    let volume = range.value
+    console.log(volume)
+    if (volume == 0) {
+      player.mute()
+      player.setVolume(volume)
+      icon.innerHTML =""
+      let i = document.createElement('i')
+      i.className = "fas fa-volume-mute"
+      icon.appendChild(i)
+      player.setVolume(volume)
+    } else {
+      player.unMute()
+      icon.innerHTML =""
+      let i = document.createElement('i')
+      i.className = "fas fa-volume-up"
+      icon.appendChild(i)
+      player.setVolume(volume)
+    }
+  })
 }
 
 
