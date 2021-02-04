@@ -73,6 +73,8 @@
     padding-left: 10px;
     padding-top: 10px;
     color: $color-white;
+    overflow-y: scroll; 
+    margin-bottom: 20px;
 }
 
 .memberlist__current-text {
@@ -113,4 +115,15 @@
 
 .memberlist__user-name--color {
     color: $color-click;
+}
+
+.memberlist__list::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.memberlist__list {
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }

@@ -1,3 +1,12 @@
-<div class="message">
-    <p><%= message.username %> -- <%= message.content %></p>
+<% user = User.where(email: message.username).first %>
+<div class="chat__user">
+    <% if user.profilepic.attached? %>
+        <% #if user != current_user %>
+        <span class="chat__img"><%= image_tag(url_for(user.profilepic)) %></span><span class="chat__username"><%= user.name%></span>
+        <% #else %>
+        <% #end %>
+    <% else %>
+        <span class="chat__img"><%= image_tag("default_pp.png") %></span><span class="chat__username"><%= user.name%></span>
+    <% end %> 
 </div>
+<div class="chat__message"><%= message.content %></div>

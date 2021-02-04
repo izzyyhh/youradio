@@ -1,11 +1,11 @@
-<h2>Chat</h2>
-                <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
-                <%= @server.name %>
-                
-                <div id='server-messages'>
-                    <% @server.chatmessages.each do |message| %>
-                        <%= render 'chatmessages/message' , message: message %>
-                    <% end %>
-                </div>
+<div class="chat">
+    <h2 class="chat__heading"><%= @server.name %> Chat</h2>
+    <div id='server-messages'>
+        <div id ="player"></div>
+            <% @server.chatmessages.each do |message| %>
+                <%= render 'chatmessages/message' , message: message %>
+            <% end %>
+    </div>
 
-                <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+<%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+</div>

@@ -6,15 +6,14 @@
             <%= render 'playlist' %>
             <% if @server.present? %>
                 <%= render 'addtrackmodal' %>
-                <div class="chat">chat</div>
+                <%= render 'chat' %>
                 <%= render 'musicbar' %>
                 <%= render 'memberlist' %>
                 
             <% end %>
             <%= render 'topbar' %>
-            <div id ="player"></div>
     <% end%>
-</div>
+</%=>
 <!--
 <div class='servers-index'>
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>

@@ -28,8 +28,9 @@
     grid-area: memberlist;
 }
 .chat{
-    background-color: white;
+
     grid-area: chat;
+    height: 100%;
 }
 .musicbar{
     grid-area: musicbar;

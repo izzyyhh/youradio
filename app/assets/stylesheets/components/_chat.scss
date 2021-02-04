@@ -1,0 +1,136 @@
+@import '../utilities/variables';
+
+.chat {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    background-color: #20262A;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+#server-messages {
+    max-height: 80%;
+    overflow-y: scroll;
+}
+
+.chat__heading {
+    color: white;
+    font-size: 25px;
+    margin-left: 16px;
+    padding-top: 20px;
+
+}
+
+.chat__img {
+    width: 25px;
+    height: 25px;
+    background-color: #C9C9C9;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 15px;
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+}
+
+.chat__user {
+    margin-left: 16px;
+    margin-top: 20px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chat__username {
+    color: #26849A;
+    font-weight: bolder;
+    font-size: 0.9rem;
+}
+
+.chat__username--current {
+    color: #A9DBA8;
+}
+
+.chat__message {
+    font-size: 0.8rem;
+    font-weight: lighter;
+    color: #FFFFFF;
+    margin-left: 57px;
+    max-width: 80%;
+    word-break: break-word;
+
+}
+
+.new_chatmessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    margin-top: auto;
+    .field {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.chat__add {
+    height: 30px;
+    min-width: 95%;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #384750;
+    justify-self: flex-end;
+    margin: auto;
+    margin-bottom: 10px;
+    border: none;
+    color: #26849A;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+#chat {
+    margin-bottom: 30px;
+}
+
+.style__hide {
+    display: none;
+    visibility: hidden;
+}
+
+#server-messages::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+#server-messages {
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+#player {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 200px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.chat__username--color {
+    color: $color-click;
+}
