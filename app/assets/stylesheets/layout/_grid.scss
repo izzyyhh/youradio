@@ -1,6 +1,5 @@
 .wrapper {
     max-width: 2000px;
-    background-color: yellow;
     display: grid;
     position: absolute;
     top: 0;
@@ -10,6 +9,20 @@
     grid-template-areas: "serverbar playlist topbar memberlist"
                          "serverbar playlist chat memberlist"
                          "serverbar musicbar musicbar musicbar";
+    grid-template-columns: 70px 230px 1fr 230px;
+    grid-template-rows: 50px 1fr 100px;
+}
+.wrapper--servernotpresent {
+    max-width: 2000px;
+    display: grid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    grid-template-areas: "serverbar topbar topbar topbar"
+                         "serverbar home home home"
+                         "serverbar home home home";
     grid-template-columns: 70px 230px 1fr 230px;
     grid-template-rows: 50px 1fr 100px;
 }
@@ -34,4 +47,7 @@
 }
 .musicbar{
     grid-area: musicbar;
+}
+.home {
+    grid-area: home;
 }
