@@ -1,0 +1,144 @@
+@import '../utilities/variables';
+@import '../base/fonts';
+
+.add-member {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.add-member__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: $color-background-playlist;
+    width: 40%;
+    height: 100%;
+
+    h1 {
+        margin: 0 20px;
+        margin-bottom: 40%;
+        color: $color-click;
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: $rokkit;
+    }
+}
+
+.add-member__right {
+    background-color: $color-background-chat;
+    width: 60%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .userpic {
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            object-fit: cover;
+            margin: 0 20px;
+        }
+    }
+
+    label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .add-member__member {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.301)
+    }
+
+    #new_servers_user {
+        height: 80%;
+        overflow-y: scroll;
+    }
+
+
+
+    #add-member__submit {
+        position: absolute;
+        right: 50px;
+        bottom: 80px;
+        width: calc(60% - 100px);
+        height: 40px;
+        background-color: $color-background-playlist;
+        color: $color-click;
+        border: none;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        -webkit-box-shadow: 0px 2px 5px 1px rgb(20, 20, 20); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow:    0px 2px 5px 1px rgb(20, 20, 20);  /* Firefox 3.5 - 3.6 */
+        box-shadow:         0px 2px 5px 1px rgb(20, 20, 20);
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked ~ .userpic {
+        img {
+            border: 4px solid $color-click;
+        }
+
+        
+    }
+
+    input[type="checkbox"]:checked ~ .check-add-member {
+            margin-left: auto;
+            justify-self: flex-end;
+            margin-right: 30px;
+            color: $color-click;
+    }
+    
+
+
+    .hide-toggel {
+        position: relative;
+        transform: translate(14px);
+        height: 20px;
+        width: 20px;
+
+        background-color: $color-background-chat;
+        
+    }
+    .check-add-member {
+        margin-left: auto;
+        justify-self: flex-end;
+        margin-right: 30px;
+        color: $color-background-chat;
+    }
+
+    .back-to-server {
+
+        position: absolute;
+        right: 50px;
+        bottom: 20px;
+        width: calc(60% - 100px);
+        height: 40px;
+        background-color: $color-background-chat;
+        color: rgb(85, 96, 107);
+        border: none;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        -webkit-box-shadow: 0px 2px 5px 1px rgb(20, 20, 20); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow:    0px 2px 5px 1px rgb(20, 20, 20);  /* Firefox 3.5 - 3.6 */
+        box-shadow:         0px 2px 5px 1px rgb(20, 20, 20);
+        cursor: pointer;
+        text-align: center;
+        padding-top: 5px;
+    }
+
+
+}
+
+

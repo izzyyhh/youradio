@@ -12,6 +12,8 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(black, 0.7);
+    visibility:"hidden";
+    display: none;
 }
 
 .add-track-section {
@@ -27,6 +29,8 @@
     justify-content: space-around;
     align-items: center;
     opacity: 1; 
+    visibility:"hidden";
+    display: none;
 
 }
 

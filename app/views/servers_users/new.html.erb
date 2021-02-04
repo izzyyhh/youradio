@@ -1,16 +1,27 @@
-<h1>Add a member to your server</h2>
-<% users = User.all %>
-<% users_already_added = User.joins(:servers_users).where(:servers_users => {:server_id => @server_id})%>
-<% users_not_added = users.select{|u| !users_already_added.include?(u) } %>
-
-<%= form_for @servers_users do |f| %>
-    <%= f.hidden_field :server_id, value: @server_id %>
-    <% users_not_added.each do |u| %>
-        <div>
-
-            <label><%= check_box_tag 'users[]', u.email %><%= u.name %> --> <%= u.email %></label>
-            
-        </div>
-    <% end %>
-<%= f.submit "Add"%>
-<% end %>
+<div class="add-member">
+    <div class="add-member__left">
+        <h1 class="add-member__heading">Add a member to your server</h1>
+    </div>
+    <div class="add-member__right">
+        <% users = User.all %>
+        <% users_already_added = User.joins(:servers_users).where(:servers_users => {:server_id => @server_id})%>
+        <% users_not_added = users.select{|u| !users_already_added.include?(u) } %>
+        <%= form_for @servers_users do |f| %>
+            <%= f.hidden_field :server_id, value: @server_id %>
+            <% users_not_added.each do |u| %>
+                <% if u.profilepic.attached?%>
+                <div class="add-member__member">
+                    <label><span class="hide-toggel"></span><%= check_box_tag 'users[]',  u.email  %><span class="userpic"><%= image_tag(url_for(u.profilepic)) %></span><%= u.name %><span class="check-add-member"><i class="fas fa-check-circle"></i></span></label>
+                </div>
+                <% else %>
+                <div class="add-member__member">
+                    <label><span class="hide-toggel"></span><%= check_box_tag 'users[]', u.email %><span class="userpic"><%= image_tag("default_pp.png") %></span><%= u.name %><span class="check-add-member"><i class="fas fa-check-circle"></i></span></label>
+                </div>
+                <% end %>
+                
+            <% end %>
+        <%= f.submit "Add member", id: 'add-member__submit'%>
+        <% end %>
+        <%= link_to 'Back to the server', servers_path, class: 'back-to-server' %>
+    </div>
+</div>
