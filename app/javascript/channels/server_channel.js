@@ -10,6 +10,7 @@ let trackTitleNextElement
 let marquee
 let serverMessagesElement
 let musicBarTitleCoverBlock
+let hider
 
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   marquee = document.getElementById('marquee')
   serverMessagesElement = document.getElementById('server-messages')
   musicBarTitleCoverBlock = document.querySelector('.musicbar__title-cover')
+  hider = document.getElementById('player__hider')
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -143,13 +145,14 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
+    hider.style.display = 'none'
     console.log("started video and runnning")
-    //setTimeout(stopVideo, 6000);
-    //done = true;
+
   } else if (event.data == YT.PlayerState.PAUSED) {
     event.target.playVideo()
   }
   else if (event.data == YT.PlayerState.ENDED){
+    hider.style.display = 'flex'
     event.target.loadVideoById({videoId: ''})
     fetchPlaylistAndPlayVideo()
   } else if (event.data == YT.PlayerState.CUED){

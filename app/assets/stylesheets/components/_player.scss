@@ -1,8 +1,34 @@
+@import '../base/fonts';
+
 #player {
     position: absolute;
-    right: 250px;
-    top: 70px;
-    width: 200px;
-    height: 100px;
-    border-radius: 4px;
+    right: 300px;
+    top: 50px;
+    width: 250px;
+    height: 140.63px;
+}
+
+#player__hider {
+    position: absolute;
+    right: 300px;
+    top: 50px;
+    width: 250px;
+    height: 140.63px;
+    background-color: #1C1C1C;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-family: $rokkit;
+        color: #A9DBA8;
+        font-size: 2rem;
+    }
+
+    i {
+        display: inline-block;
+        color: #A9DBA8;
+        font-size: 3rem;
+    }
 }
