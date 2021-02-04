@@ -2,13 +2,13 @@
   <div class="field">
     <%= form.hidden_field :username, value: current_user.email %>
 
-    <%= form.label :content %>
-    <%= form.text_area :content, id: 'content-input' %>
+    
+    <%= form.text_field :content, id: 'content-input', class: 'chat__add',  value: 'Type Text' %>
   </div>
 
   <%= form.hidden_field :server_id, value: @server.id %>
 
   <div class="actions">
-    <%= form.submit 'Submit', data: { disable_with: false }%>
+    <%= form.submit 'Submit', data: { disable_with: false }, class: 'style__hide'%>
   </div>
 <% end %>

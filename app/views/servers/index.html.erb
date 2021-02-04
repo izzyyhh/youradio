@@ -6,9 +6,8 @@
         <%= render 'playlist' %>
         <% if @server.present? %>
             <%= render 'addtrackmodal' %>
-            <div class="chat">chat</div>
-            <div class="memberlist">memberlist</div>
-        <%= render 'memberlist' %>
+            <%= render 'chat' %>
+            <%= render 'memberlist' %>
 
             <button class="add-track-button">Click</button>
         <% end %>

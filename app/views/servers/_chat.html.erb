@@ -1,11 +1,27 @@
-<h2>Chat</h2>
-                <%= link_to "add member", new_servers_user_path(:server_id => @server.id) %>
-                <%= @server.name %>
-                
-                <div id='server-messages'>
-                    <% @server.chatmessages.each do |message| %>
-                        <%= render 'chatmessages/message' , message: message %>
-                    <% end %>
-                </div>
+<div class="chat">
+    <h2 class="chat__heading"><%= @server.name %> Chat</h2>
+    <div id='server-messages'>
+        <div class="chat__overflow">
+            <% @server.chatmessages.each do |message| %>
+                <%= render 'chatmessages/message' , message: message %>
+            <% end %>
+        </div>
+    </div>
 
-                <%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+<%= render 'chatmessages/form', chatmessage: Chatmessage.new %>
+</div>
+
+<!--
+<div class="chat">
+    <h2 class="chat__heading">Radio Chat Section</h2>
+    <div class="chat__user"><span class="chat__img"></span><span class="chat__username chat__username--current">Username</span></div>
+    <div class="chat__message">Chat-MessageChat-MessageChat-MessageChat-MessageChat-Message</div>
+    <div class="chat__user"><span class="chat__img"></span><span class="chat__username">Username</span></div>
+    <div class="chat__message">Chat-MessageChat-MessageChat-Message</div>
+    <div class="chat__user"><span class="chat__img"></span><span class="chat__username">Username</span></div>
+    <div class="chat__message">Chat-MessageChat-MessageChat-MessageChat-MessageChat-MessageChat-Message</div>
+    <div class="chat__user"><span class="chat__img"></span><span class="chat__username">Username</span></div>
+    <div class="chat__message">Chat-Message</div>
+    <input type="text" class="chat__add" value="Type Text"></input>
+</div>
+-->
