@@ -104,19 +104,21 @@ function onPlayerReady(event) {
             if (trackToPlay) {
               curId=trackToPlay.uri
               
+              
               player.playVideo()
               
               setTimeout(() => {
-                if (player.getPlayerState() === -1 || player.getPlayerState() === 3) {
-                  player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
+                // || player.getPlayerState() === 3
+                if (player.getPlayerState() === -1 ) {
+                    player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
                 }
               }, 300)
               
-              // setTimeout(()=> {
-              //   if (player.getPlayerState() === 0) {
-              //     player.seekTo(trackTimePosition, true)
-              //   }
-              // }, 400)
+            //   setTimeout(()=> {
+            //     if (player.getPlayerState() === 0) {
+            //       //player.seekTo(trackTimePosition, true)
+            //     }
+            //   }, 400)
             }
 
 
@@ -141,7 +143,13 @@ function onPlayerStateChange(event) {
     event.target.playVideo()
   }
   else if (event.data == YT.PlayerState.ENDED){
+    event.target.loadVideoById({videoId: ''})
     fetchPlaylistAndPlayVideo()
+  } else if (event.data == YT.PlayerState.CUED){
+    console.log("CUEED")
+  } else if (event.data == YT.PlayerState.BUFFERING){
+    console.log("BUFEERING")
+    console.log(event.target.getVideoLoadedFraction())
   }
 }
 
@@ -208,7 +216,7 @@ function fetchPlaylistAndPlayVideo(){
 function showList(trackToPlay, playlist, type){
   const LOAD = "load"
   let trackIndex
-  console.log(type)
+
   if(type == LOAD){
     playlistElement.innerHTML=""
     
