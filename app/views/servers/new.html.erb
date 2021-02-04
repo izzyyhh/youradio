@@ -1,13 +1,33 @@
-<h1>Erstelle einen Server</h1>
+<div class='wrapper--login'>
 
-<%= form_for @server do |f| %>
+  <div class='wrapper--login__content'>
     <div>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :serverpic %>
-        <%= f.file_field :serverpic %>
+      <h1>New server</h1>
     </div>
+  </div>
+  <div class='form-side'>
+    <div class='login newserver'>
 
-<%= f.submit %>
-<% end %>
+    <div class='login__heading'>Your new server</div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <div class="login__input-and-label">
+        <%= f.text_field :name, autocomplete: "off", required: true %>
+        <%= f.label :name %>
+        </div>
+
+        <div class="login__fileinput-and-label">
+        <%= f.label :serverpic %><br>
+        <%= f.file_field :serverpic %>
+        </div>
+
+        <div style='margin-top: 2rem' class="actions">
+        <%= f.submit "Create server" %>
+        </div>
+    <% end %>
+
+    </div>
+  <%= link_to "Back", :back, method: :get, class: 'edit__back' %>
+  </div>
+</div>
+
 

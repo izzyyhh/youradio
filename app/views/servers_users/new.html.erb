@@ -22,6 +22,6 @@
             <% end %>
         <%= f.submit "Add member", id: 'add-member__submit'%>
         <% end %>
-        <%= link_to 'Back to the server', servers_path, class: 'back-to-server' %>
+        <%= link_to 'Back to the server', server_path(@server_id), class: 'back-to-server', method: :get %>
     </div>
 </div>
