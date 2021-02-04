@@ -1,0 +1,25 @@
+@import '../utilities/variables';
+@import '../base/fonts';
+
+.home {
+    background-color: $color-background-chat;
+    padding: 2rem;
+}
+.home__heading {
+    color: whitesmoke;
+    font-family: $rokkit;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+.home__paragraph {
+    line-height: 1.5rem;
+    color: whitesmoke;
+}
+.home__card {
+    padding: 1rem;
+    max-width: 1000px;
+    box-shadow: 0 18px 26px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow:  0 18px 26px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow:  0 18px 26px rgba(0, 0, 0, 0.6);  
+}
