@@ -1,33 +1,43 @@
-<h1>TestRadio</h1>
-<h2>Log in</h2>
+<div class='wrapper--login'>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class='wrapper--login__content'>
+    <div>
+      <h1>YouRadio</h1>
+      <p>Welcome to YouRadio! Create a server with your friends and listen to your favourite songs together.</p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
+  <div class='login'>
+  <h2 class='login__heading'>YouRadio</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="login__input-and-label">
+        <%= f.text_field :email, autofocus: true, autocomplete: "off", :required => true %>
+        <%= f.label :email %>
+      </div>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>
+      <div class="login__input-and-label">
+        <%= f.password_field :password, autocomplete: "current-password", :required => true %>
+        <%= f.label :password %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="login__checkbox-and-label">
+          <%= f.label :remember_me %>
+          <%= f.check_box :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "You are new? <span class='login__a-text'>Sign up here</span>".html_safe , new_registration_path(resource_name), class: 'login__signup' %>
+    <% end %>
+
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'login__forgot' %>
+    <% end %>
+  </div>
+</div>
