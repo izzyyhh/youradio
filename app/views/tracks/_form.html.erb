@@ -1,13 +1,21 @@
-<h2>Add Track with youtube-url</h2>
-<%= form_for(track, remote: true, html: {id: "trackform"}) do |form| %>
-  <div class="field">
-    <%= form.label :uri %>
-    <%= form.text_field :uri, id: 'uri-input' %>
+<div class="track__add-choices">
+  <div class="track__add-option">
+    <div class="track__link"><span class="track__text">Link</span></div>
+    <div class="track__search"><span class="track__text">Future Feature: Search</span></div>
+    <div class="track__talk"><span class="track__text">Future Feature: Voice-Message</span></div>
   </div>
+  <div class="track__link-form">
+    <%= form_for(track, remote: true, html: {id: "trackform"}) do |form| %>
+      <h2 class="track__link-form__heading">Gib einfach einen Youtube Link ein</h2>
+      <div class="field">
+        <%= form.text_field :uri, id: 'uri-input', placeholder: 'Link' %>
+      </div>
 
-  <%= form.hidden_field :server_id, value: @server.id %>
+      <%= form.hidden_field :server_id, value: @server.id %>
 
-  <div class="actions">
-    <%= form.submit 'Add Track', data: { disable_with: false }, id: 'addtrack' %>
+      <div class="actions add-track__action">
+        <i class='add-track__action-icon fas fa-plus fa-lg'></i><%= form.submit "", data: { disable_with: false }, id: 'addtrack' %>
+      </div>
+    <% end %>  
   </div>
-<% end %>
+</div>
