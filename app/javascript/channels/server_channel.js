@@ -301,7 +301,6 @@ function addSoundSettings() {
 
   range.addEventListener('input', () => {
     let volume = range.value
-    console.log(volume)
     if (volume == 0) {
       player.mute()
       player.setVolume(volume)
