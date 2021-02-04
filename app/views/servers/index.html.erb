@@ -1,22 +1,19 @@
 <% if user_signed_in? %>
 <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 <div class='wrapper'>
-<%= render 'serverlist'%>
-<% if @server.present? %>
-        <%= render 'playlist' %>
-        <% if @server.present? %>
-            <%= render 'addtrackmodal' %>
-            <%= render 'chat' %>
-            <%= render 'memberlist' %>
-
-            <button class="add-track-button">Click</button>
-        <% end %>
-        <%= render 'topbar' %>
-        <div class="musicbar">musicbar</div>
-        <div id ="player"></div>
-        <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
-<% end%>
-
+    <%= render 'serverlist'%>
+    <% if @server.present? %>
+            <%= render 'playlist' %>
+            <% if @server.present? %>
+                <%= render 'addtrackmodal' %>
+                <%= render 'chat' %>
+                <%= render 'musicbar' %>
+                <%= render 'memberlist' %>
+                
+            <% end %>
+            <%= render 'topbar' %>
+    <% end%>
+</%=>
 <!--
 <div class='servers-index'>
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>

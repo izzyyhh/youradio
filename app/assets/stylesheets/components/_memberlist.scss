@@ -13,7 +13,8 @@
 
 .memberlist__name {
     color: $color-white;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     border-bottom: 1px solid rgba(255, 255, 255, 0.239);
     width: 100%;
     text-align: left;
@@ -72,13 +73,17 @@
     padding-left: 10px;
     padding-top: 10px;
     color: $color-white;
+    overflow-y: scroll; 
+    margin-bottom: 20px;
 }
 
 .memberlist__current-text {
+    font-size: .9rem;
     font-weight: bolder;
 }
 
 .memberlist__member-text {
+    font-size: .9rem;
     font-weight: bolder;
     margin-top: 10px;
 }
@@ -96,7 +101,6 @@
 
 .memberlist__userpic {
     img {
-
         width: 30px;
         height: 30px;
         border-radius: 100%;
@@ -106,10 +110,20 @@
 
 .memberlist__user-name {
     padding-left: 10px;
-    font-weight: lighter;
     font-size: 0.8rem;
 }
 
 .memberlist__user-name--color {
     color: $color-click;
+}
+
+.memberlist__list::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.memberlist__list {
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }

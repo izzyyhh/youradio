@@ -4,10 +4,10 @@
 
     
     <div class="memberlist__search">
-    <button class="memberlist__searchbar"><span>Future Feauture: Search</span><span><i class="fas fa-search fa-lg"></span></i></button>
+        <button class="memberlist__searchbar"><span>Future Feauture: Search</span><span><i class="fas fa-search fa-lg"></i></span></button>
     </div>
-    <ul class="memberlist__list">
 
+    <ul class="memberlist__list">
         <li class="memberlist__current-text">Current User</li>
         <% if current_user.profilepic.attached? %>
             <li class='memberlist__user'><div class="memberlist__user-data"><span class="memberlist__userpic"><%= image_tag(url_for(current_user.profilepic)) %></span><span class="memberlist__user-name"><%= current_user.name %></span></div></li>
