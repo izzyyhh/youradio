@@ -168,12 +168,13 @@
 }
 
 .edit__back {
+    font-weight: bold;
     position: absolute;
     bottom: 1rem;
-    width: calc(80% - 100px);
+    width: calc(60% - 100px);
     height: 40px;
-    background-color: $color-background-chat;
-    color: rgb(85, 96, 107);
+    background-color: #1C1C1C;
+    color: $color-click;
     border: none;
     border-radius: 3px;
     font-size: 1.2rem;
@@ -186,12 +187,13 @@
 }
 
 .edit__destroy {
+    font-weight: bold;
     position: absolute;
     bottom: 4rem;
-    width: calc(80% - 100px);
+    width: calc(60% - 100px);
     height: 40px;
-    background-color: $color-background-chat;
-    color: rgb(85, 96, 107);
+    background-color: #3a393965;
+    color: $color-click;
     border: none;
     border-radius: 3px;
     font-size: 1.2rem;
@@ -216,4 +218,8 @@
 .edit__pp {
     position: absolute;
     left: 7rem;
+}
+
+#error_explanation {
+    color: rgba(255, 0, 0, 0.568);
 }
