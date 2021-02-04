@@ -96,9 +96,13 @@
     margin: auto;
     margin-bottom: 10px;
     border: none;
-    color: #26849A;
+    color: white;
     padding-left: 20px;
     margin-top: 20px;
+
+    &::placeholder{
+        color: #26859aa6;
+    }
 }
 
 #chat {
@@ -116,7 +120,6 @@
   
 /* Hide scrollbar for IE, Edge and Firefox */
 #server-messages {
-
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }

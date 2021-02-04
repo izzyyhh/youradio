@@ -3,12 +3,12 @@
     <%= form.hidden_field :username, value: current_user.email %>
 
     
-    <%= form.text_field :content, id: 'content-input', class: 'chat__add',  value: 'Type Text' %>
+    <%= form.text_field :content, id: 'content-input', class: 'chat__add',  placeholder: 'type...' %>
   </div>
 
   <%= form.hidden_field :server_id, value: @server.id %>
 
   <div class="actions">
-    <%= form.submit 'Submit', data: { disable_with: false }, class: 'style__hide'%>
+    <%= form.submit 'Submit', data: { disable_with: false }, class: 'style__hide', id: 'send-message-button' %>
   </div>
 <% end %>

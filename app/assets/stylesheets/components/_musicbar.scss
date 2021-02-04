@@ -183,3 +183,37 @@
       transform: translate(-100%);
     }
 }
+
+@media (max-width: 1320px){
+    .marquee {
+        text-align: center;
+        display: inline-block;
+        width: 230px;
+        overflow: hidden;
+        text-overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .musicbar__titel-now--rolling{
+        white-space: nowrap;
+        transform: translate(230px);
+        text-align: center;
+        animation-name: slide;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: slide;
+        -webkit-animation-duration: 8s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+    }
+    .musicbar__titel-now {
+        display: inline-block;
+        font-size: .8rem;
+        font-weight: 600;
+    }
+    .musicbar__titel-next {
+        font-size: 10px;
+        color: #C9C9C9;
+    }
+}

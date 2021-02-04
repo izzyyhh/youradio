@@ -8,12 +8,17 @@ let playlistElement
 let trackTitleNowElement
 let trackTitleNextElement
 let marquee
+let serverMessagesElement
+let musicBarTitleCoverBlock
+
 
 document.addEventListener('DOMContentLoaded', ()=> {
   playlistElement = document.querySelector(".playlist__tracklist")
   trackTitleNowElement = document.querySelector(".musicbar__titel-now")
   trackTitleNextElement = document.querySelector(".musicbar__titel-next")
   marquee = document.getElementById('marquee')
+  serverMessagesElement = document.getElementById('server-messages')
+  musicBarTitleCoverBlock = document.querySelector('.musicbar__title-cover')
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -50,7 +55,8 @@ function onPlayerReady(event) {
       connected() {
         
         console.log("connected to: " + server_id)
-        fetchPlaylistAndPlayVideo()          
+        fetchPlaylistAndPlayVideo()
+        serverMessagesElement.scrollTop = serverMessagesElement.scrollHeight      
         // Called when the subscription is ready for use on the server
         //bei neuem connect zum server holen wir uns die playlist        
       },
@@ -65,6 +71,7 @@ function onPlayerReady(event) {
         if(data.content_type != "tracks"){
           const messages = document.getElementById('server-messages')
           messages.innerHTML += data.html
+          serverMessagesElement.scrollTop = serverMessagesElement.scrollHeight
           
         }else {
           
@@ -246,8 +253,9 @@ function showList(trackToPlay, playlist, type){
 
 function showTitlesInMusicBar(currentTrack){
   trackTitleNowElement.innerText = currentTrack.title
+  console.log(musicBarTitleCoverBlock.offsetWidth/trackTitleNowElement.offsetWidth)
 
-  if(trackTitleNowElement.offsetWidth > 300){
+  if(currentTrack.title.length > 30){
     marquee.classList.add('marquee')
     trackTitleNowElement.classList.add('musicbar__titel-now--rolling')
   } else {
