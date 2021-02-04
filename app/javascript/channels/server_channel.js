@@ -7,12 +7,13 @@ let player
 let playlistElement
 let trackTitleNowElement
 let trackTitleNextElement
-
+let marquee
 
 document.addEventListener('DOMContentLoaded', ()=> {
   playlistElement = document.querySelector(".playlist__tracklist")
   trackTitleNowElement = document.querySelector(".musicbar__titel-now")
   trackTitleNextElement = document.querySelector(".musicbar__titel-next")
+  marquee = document.getElementById('marquee')
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -237,6 +238,15 @@ function showList(trackToPlay, playlist, type){
 
 function showTitlesInMusicBar(currentTrack){
   trackTitleNowElement.innerText = currentTrack.title
+
+  if(trackTitleNowElement.offsetWidth > 300){
+    marquee.classList.add('marquee')
+    trackTitleNowElement.classList.add('musicbar__titel-now--rolling')
+  } else {
+    marquee.classList.remove('marquee')
+    trackTitleNowElement.classList.remove('musicbar__titel-now--rolling')
+  }
+
   let trackIndex = playlist.findIndex(t => t.starttime == currentTrack.starttime)
 
   if(playlist[trackIndex + 1]){

@@ -14,6 +14,7 @@
 }
 
 .musicbar__cover {
+    min-width: 50px;
     width: 50px;
     height: 50px;
     background-color: #384750;
@@ -33,6 +34,7 @@
 }
 
 .musicbar__titel-now {
+    display: inline-block;
     font-size: 1.1rem;
     font-weight: 600;
 }
@@ -151,4 +153,33 @@
     height: 5px;
     background-color: #384750;
     margin-right: 20px;
+}
+
+.marquee {
+    text-align: center;
+    display: inline-block;
+    width: 380px;
+    overflow: hidden;
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+.musicbar__titel-now--rolling{
+    white-space: nowrap;
+    transform: translate(380px);
+    text-align: center;
+    animation-name: slide;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: slide;
+    -webkit-animation-duration: 8s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+
+@keyframes slide {
+    to {
+      transform: translate(-100%);
+    }
 }
