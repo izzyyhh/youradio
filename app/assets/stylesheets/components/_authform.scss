@@ -1,4 +1,5 @@
 @import '../base/fonts';
+@import '../utilities/variables';
 
 .login {
     margin: 0 auto;
@@ -18,6 +19,11 @@
 .signup {
     height: 520px;
     width: 400px;
+}
+.edituser {
+    position: relative;
+    height: 565px;
+    width: 420px;
 }
 
 .login__heading {
@@ -156,4 +162,55 @@
     display: inline-block;
     margin-left: 0;
     color: #26849A;
+}
+
+.edit__back {
+    position: absolute;
+    bottom: 1rem;
+    width: calc(80% - 100px);
+    height: 40px;
+    background-color: $color-background-chat;
+    color: rgb(85, 96, 107);
+    border: none;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    -webkit-box-shadow: 0px 2px 5px 1px rgb(20, 20, 20); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    0px 2px 5px 1px rgb(20, 20, 20);  /* Firefox 3.5 - 3.6 */
+    box-shadow:         0px 2px 5px 1px rgb(20, 20, 20);
+    cursor: pointer;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.edit__destroy {
+    position: absolute;
+    bottom: 4rem;
+    width: calc(80% - 100px);
+    height: 40px;
+    background-color: $color-background-chat;
+    color: rgb(85, 96, 107);
+    border: none;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    -webkit-box-shadow: 0px 2px 5px 1px rgb(20, 20, 20); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    0px 2px 5px 1px rgb(20, 20, 20);  /* Firefox 3.5 - 3.6 */
+    box-shadow:         0px 2px 5px 1px rgb(20, 20, 20);
+    cursor: pointer;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.form-side{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit__pp {
+    position: absolute;
+    left: 7rem;
 }
