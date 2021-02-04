@@ -35,11 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function disappear() {
     addTrackSection.style.transform = "translate(-43%, -50%) scale(0)";
     overlay.style.visibility="hidden"
+    overlay.style.display="none"
     isOpen = false
 }
 
 function appear() {
     addTrackSection.style.transform = "translate(-43%, -50%) scale(1)";
     overlay.style.visibility="initial"
+    overlay.style.display="flex"
     isOpen = true
 }
