@@ -5,9 +5,14 @@ let server_id
 let playlist
 let player
 let playlistElement
+let trackTitleNowElement
+let trackTitleNextElement
+
 
 document.addEventListener('DOMContentLoaded', ()=> {
   playlistElement = document.querySelector(".playlist__tracklist")
+  trackTitleNowElement = document.querySelector(".musicbar__titel-now")
+  trackTitleNextElement = document.querySelector(".musicbar__titel-next")
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -82,6 +87,7 @@ function onPlayerReady(event) {
                 if(delta > 0 ){
                   //lied ist noch nicht vorbei
                   trackToPlay = track
+                  showTitlesInMusicBar(trackToPlay)
                   trackTimePosition = duration - delta
                   break
                 }
@@ -162,6 +168,7 @@ function fetchPlaylistAndPlayVideo(){
         if(delta > 0 ){
           //lied ist noch nicht vorbei
           trackToPlay = track
+          showTitlesInMusicBar(trackToPlay)
           console.log(track)
           trackTimePosition = duration - delta
           break
@@ -225,6 +232,18 @@ function showList(trackToPlay, playlist, type){
     //newTrack.innerText = track.title
     playlistElement.appendChild(newTrack)
   }  
+}
+
+
+function showTitlesInMusicBar(currentTrack){
+  trackTitleNowElement.innerText = currentTrack.title
+  let trackIndex = playlist.findIndex(t => t.starttime == currentTrack.starttime)
+
+  if(playlist[trackIndex + 1]){
+    trackTitleNextElement.innerText = `-next: ${playlist[trackIndex + 1].title}`
+  } else {
+    trackTitleNextElement.innerText = ''
+  }
 }
 
 
