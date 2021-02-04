@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addTrackSection = document.querySelector('.add-track-section')
     overlay = document.querySelector('.add-track__overlay')
     addTrack = document.getElementById('addtrack')
-    disappear()
 
     addTrack.addEventListener('click', () => {
         disappear()
@@ -34,13 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function disappear() {
-    addTrackSection.style.visibility="hidden"
+    addTrackSection.style.transform = "translate(-43%, -50%) scale(0)";
     overlay.style.visibility="hidden"
     isOpen = false
 }
 
 function appear() {
-    addTrackSection.style.visibility="initial"
+    addTrackSection.style.transform = "translate(-43%, -50%) scale(1)";
     overlay.style.visibility="initial"
     isOpen = true
 }
