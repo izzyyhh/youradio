@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SendMessageJob < ApplicationJob
   queue_as :default
 
@@ -6,9 +8,8 @@ class SendMessageJob < ApplicationJob
     html = ApplicationController.render(
       partial: 'chatmessages/message',
       locals: { message: message }
-  )
+    )
 
-  ActionCable.server.broadcast "server_channel_#{message.server_id}", html: html
-
+    ActionCable.server.broadcast "server_channel_#{message.server_id}", html: html
   end
 end

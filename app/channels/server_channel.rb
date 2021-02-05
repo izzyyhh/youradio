@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ServerChannel < ApplicationCable::Channel
   def subscribed
     stream_from "server_channel_#{params[:server_id]}"

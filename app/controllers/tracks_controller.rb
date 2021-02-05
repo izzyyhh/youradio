@@ -1,20 +1,19 @@
+# frozen_string_literal: true
+
 class TracksController < ApplicationController
-  def new
-  end
+  def new; end
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def create
-    apiKey = ENV.fetch("API_KEY")
-    #ENV['DATABASE_URL']
+    apiKey = ENV.fetch('API_KEY')
+    # ENV['DATABASE_URL']
     uri = params[:track][:uri]
-    uri_useable= validate_uri(uri)
+    uri_useable = validate_uri(uri)
     server_id = params[:track][:server_id]
-    
+
     if uri_useable
 
       youtube_id = get_youtube_id(uri)
@@ -24,19 +23,17 @@ class TracksController < ApplicationController
       struct = JSON.parse(response, object_class: OpenStruct)
       details = JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
 
-      #try catch block
+      # try catch block
 
-      begin 
-
+      begin
         # get video details from api
         title = details.items[0].snippet.title
         description = details.items[0].snippet.description
         thumbnail = details.items[0].snippet.thumbnails.medium.url
         channeltitle = details.items[0].snippet.channelTitle
-        #mehr details title, description, thumbnail,  channeltitle
+        # mehr details title, description, thumbnail,  channeltitle
         duration = struct.items[0].contentDetails.duration
         duration_in_s = convert_time(duration)
-
 
         server_id = params[:track][:server_id]
         @playlist = Server.find(server_id).playlist
@@ -44,69 +41,68 @@ class TracksController < ApplicationController
         # time calculation
 
         # if playlist empty
-        if (@playlist.tracks.count == 0)
+        if @playlist.tracks.count.zero?
           @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-            starttime: Time.now, title: title,
-            channeltitle: channeltitle, description: description,
-            thumbnail: thumbnail)
-          p "das erste im empty"
+                                                                 starttime: Time.now, title: title,
+                                                                 channeltitle: channeltitle, description: description,
+                                                                 thumbnail: thumbnail)
+          p 'das erste im empty'
 
         # if playlist has entries
-        else 
+        else
           p time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
           p Time.now
           p (time - Time.now).seconds
           time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
 
           # if playlist has already stopped but has entries which already have been played
-          if !@playlist.tracks.first || (time - Time.now).seconds < 0
+          if !@playlist.tracks.first || (time - Time.now).seconds.negative?
             @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-              starttime: Time.now, title: title,
-              channeltitle: channeltitle, description: description,
-              thumbnail: thumbnail)
-          
+                                                                   starttime: Time.now, title: title,
+                                                                   channeltitle: channeltitle, description: description,
+                                                                   thumbnail: thumbnail)
+
           # if playlist has songs and play a song
           else
-            
+
             last_track = @playlist.tracks.last
-            old_starttime = last_track.starttime 
+            old_starttime = last_track.starttime
             old_duration = last_track.duration
-            this_starttime= old_starttime + old_duration.seconds
+            this_starttime = old_starttime + old_duration.seconds
             @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-                                                            starttime: this_starttime, title: title,
-                                                            channeltitle: channeltitle, description: description,
-                                                            thumbnail: thumbnail)
+                                                                   starttime: this_starttime, title: title,
+                                                                   channeltitle: channeltitle, description: description,
+                                                                   thumbnail: thumbnail)
             p 'first track existent'
           end
 
         end
         SendTrackJob.perform_later(@playlist)
-      rescue
-        p "Die eigegebene Url liefert keine Daten"
-        
+      rescue StandardError
+        p 'Die eigegebene Url liefert keine Daten'
       end
     else
-      p "Url ist empty oder nil-> so geht das nicht"
-    
+      p 'Url ist empty oder nil-> so geht das nicht'
+
     end
   end
 
   private
 
   def validate_uri(uri)
-    #check if input is empty
-    if uri != "" and uri != nil
+    # check if input is empty
+    if (uri != '') && !uri.nil?
       id = get_youtube_id(uri)
 
-      #check if youtube id is empty
-      if id != "" and id != nil
-        return true
+      # check if youtube id is empty
+      if (id != '') && !id.nil?
+        true
       else
-        return false
+        false
       end
-    else 
-      return false
-    end 
+    else
+      false
+    end
   end
 
   def tracks_params
@@ -114,25 +110,22 @@ class TracksController < ApplicationController
   end
 
   def convert_time(dur)
-    pattern = "PT"
-    pattern += "%HH" if dur.include? "H"
-    pattern += "%MM" if dur.include? "M"
-    pattern += "%SS"
+    pattern = 'PT'
+    pattern += '%HH' if dur.include? 'H'
+    pattern += '%MM' if dur.include? 'M'
+    pattern += '%SS'
     DateTime.strptime(dur, pattern).seconds_since_midnight.to_i
   end
-  
+
   def get_youtube_id(url)
     id = ''
-    url = url.gsub(/(>|<)/i,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)
-    if url[2] != nil
+    url = url.gsub(/(>|<)/i, '').split(%r{(vi/|v=|/v/|youtu\.be/|/embed/)})
+    if !url[2].nil?
       id = url[2].split(/[^0-9a-z_\-]/i)
-      id = id[0];
+      id = id[0]
     else
-      id = url;
+      id = url
     end
     id
   end
-
 end
-
-

@@ -1,41 +1,39 @@
+# frozen_string_literal: true
+
 class ServersController < ApplicationController
-    before_action :authenticate_user!, :set_server, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, :set_server, only: %i[show edit update destroy]
 
-    def index
-        if user_signed_in?
-            @servers = current_user.servers
-        end
-    end
+  def index
+    @servers = current_user.servers if user_signed_in?
+  end
 
-    def show
-        if user_signed_in?
-            @servers = current_user.servers
-        else
-            @servers = []
-        end
-        
-        render 'index'        
-    end
+  def show
+    @servers = if user_signed_in?
+                 current_user.servers
+               else
+                 []
+               end
 
-    def new
-        @server = Server.new
-    end
+    render 'index'
+  end
 
-    def create
-        @server = current_user.servers.create(server_params)
-        Playlist.create(server_id: @server.id)
-        redirect_to @server
-    end
+  def new
+    @server = Server.new
+  end
 
-    private
+  def create
+    @server = current_user.servers.create(server_params)
+    Playlist.create(server_id: @server.id)
+    redirect_to @server
+  end
 
-    def set_server
-        @server = Server.find(params[:id])
-    end
+  private
 
-    def server_params
-        params.require(:server).permit(:name, :serverpic)
-    end
+  def set_server
+    @server = Server.find(params[:id])
+  end
+
+  def server_params
+    params.require(:server).permit(:name, :serverpic)
+  end
 end
-
-

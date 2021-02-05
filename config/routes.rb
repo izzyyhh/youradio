@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'tracks/new'
   get 'tracks/create'
@@ -10,6 +12,6 @@ Rails.application.routes.draw do
   resources :chatmessages
   resources :servers_users
   resources :tracks
-  
-  root to: "servers#index"
+
+  root to: 'servers#index'
 end
