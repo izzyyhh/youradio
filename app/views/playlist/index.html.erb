@@ -1,6 +1,7 @@
 [
 <% playlist = Server.find(params[:server_id]).playlist %>
-<% playlist.tracks.each do |t| %>
+<% playlist_ordered = playlist.tracks.order(:created_at => :asc) %>
+<% playlist_ordered.each do |t| %>
     {
         "uri": "<%= t.uri %>",
         "starttime": "<%= t.starttime.to_i %>",
@@ -9,7 +10,7 @@
         "thumbnail": "<%= t.thumbnail %>",
         "channeltitle": "<%= t.channeltitle %>"
     }
-    <% if t != playlist.tracks.last %>
+    <% if t != playlist_ordered.last %>
     ,
     <% end %>
 <% end %>
