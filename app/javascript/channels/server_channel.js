@@ -1,6 +1,5 @@
 import consumer from "./consumer"
 
-// 2. This code loads the IFrame Player API code asynchronously.
 let server_id
 let playlist
 let player
@@ -43,9 +42,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   addSoundSettings()
 })
-
-
-
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
@@ -130,7 +126,6 @@ function onPlayerReady(event) {
             //   }, 400)
             }
 
-
             showList(trackToPlay, playlist, "append")
 
           })   
@@ -155,18 +150,17 @@ function onPlayerStateChange(event) {
     hider.style.display = 'flex'
     event.target.loadVideoById({videoId: ''})
     fetchPlaylistAndPlayVideo()
+
   } else if (event.data == YT.PlayerState.CUED){
-    console.log("CUEED")
+
   } else if (event.data == YT.PlayerState.BUFFERING){
-    console.log("BUFEERING")
-    console.log(event.target.getVideoLoadedFraction())
+
   }
 }
 
 function stopVideo() {
   //player.stopVideo();
 }
-
 
 function fetchPlaylistAndPlayVideo(){
   fetch(`/servers/${server_id}/playlist/`)
@@ -205,6 +199,7 @@ function fetchPlaylistAndPlayVideo(){
       curId=trackToPlay.uri
       
       // player.playVideo()
+      // 2. This code loads the IFrame Player API code asynchronously. But is no promise
       player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
       
       // setTimeout(()=> {
@@ -215,11 +210,7 @@ function fetchPlaylistAndPlayVideo(){
       // }, 300)
     }
 
-    // 2. This code loads the IFrame Player API code asynchronously. But is no promise
-
-    
     showList(trackToPlay, playlist, "load")
-
   })
 }
 
