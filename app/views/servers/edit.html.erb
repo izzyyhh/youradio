@@ -8,7 +8,7 @@
     <div class='form-side'>
       <div class='login newserver'>
   
-      <div class='login__heading'>Your new server</div>
+      <div class='login__heading'><%= @server.name %></div>
       <%= form_for @server do |f| %>
           <div class="login__input-and-label">
           <%= f.text_field :name, autocomplete: "off", required: true %>

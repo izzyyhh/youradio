@@ -27,6 +27,11 @@ class ServersController < ApplicationController
     redirect_to @server
   end
 
+  def update
+    @server.update(server_params)
+    redirect_to @server
+  end
+
   private
 
   def set_server
