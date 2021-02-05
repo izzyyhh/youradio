@@ -10,6 +10,8 @@ let trackTitleNextElement
 let marquee
 let serverMessagesElement
 let musicBarTitleCoverBlock
+let runtime
+let endtime
 
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -19,6 +21,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
   marquee = document.getElementById('marquee')
   serverMessagesElement = document.getElementById('server-messages')
   musicBarTitleCoverBlock = document.querySelector('.musicbar__title-cover')
+  runtime = document.querySelector('.musicbar__runtime')
+  endtime = document.querySelector('.musicbar__endtime')
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -58,7 +62,8 @@ function onPlayerReady(event) {
         
         console.log("connected to: " + server_id)
         fetchPlaylistAndPlayVideo()
-        serverMessagesElement.scrollTop = serverMessagesElement.scrollHeight      
+        serverMessagesElement.scrollTop = serverMessagesElement.scrollHeight
+        createProgressbar()    
         // Called when the subscription is ready for use on the server
         //bei neuem connect zum server holen wir uns die playlist        
       },
@@ -321,3 +326,15 @@ function addSoundSettings() {
 }
 
 
+function createProgressbar() {
+
+  let numberEndTime = player.getDuration()
+  let numberRunTime = player.getCurrentTime()
+
+  runtime.innerHTML = ""
+  runtime.innerText = numberRunTime
+
+  endtime.innerHTML= ""
+  endtime.innerText = numberEndTime
+
+}
