@@ -10,12 +10,9 @@ let trackTitleNextElement
 let marquee
 let serverMessagesElement
 let musicBarTitleCoverBlock
-<<<<<<< HEAD
 let runtime
 let endtime
-=======
 let hider
->>>>>>> master
 
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -25,12 +22,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
   marquee = document.getElementById('marquee')
   serverMessagesElement = document.getElementById('server-messages')
   musicBarTitleCoverBlock = document.querySelector('.musicbar__title-cover')
-<<<<<<< HEAD
   runtime = document.querySelector('.musicbar__runtime')
   endtime = document.querySelector('.musicbar__endtime')
-=======
   hider = document.getElementById('player__hider')
->>>>>>> master
 
   window.onYouTubeIframeAPIReady = function() {
     player = new YT.Player('player', {
@@ -71,7 +65,7 @@ function onPlayerReady(event) {
         console.log("connected to: " + server_id)
         fetchPlaylistAndPlayVideo()
         serverMessagesElement.scrollTop = serverMessagesElement.scrollHeight
-        createProgressbar()    
+        
         // Called when the subscription is ready for use on the server
         //bei neuem connect zum server holen wir uns die playlist        
       },
@@ -217,7 +211,7 @@ function fetchPlaylistAndPlayVideo(){
       
       // player.playVideo()
       player.loadVideoById({videoId: curId, startSeconds: trackTimePosition})
-      
+          
       // setTimeout(()=> {
       //   console.log("seekoti")
       //   console.log(trackTimePosition)
@@ -335,15 +329,50 @@ function addSoundSettings() {
 }
 
 
-function createProgressbar() {
 
-  let numberEndTime = player.getDuration()
-  let numberRunTime = player.getCurrentTime()
+function updateTime() {
+  try{
+    if (player.getPlayerState() == 1) {
 
-  runtime.innerHTML = ""
-  runtime.innerText = numberRunTime
+      let numberEndTime = player.getDuration()
+      let numberRunTime = player.getCurrentTime()
+      let minutesRun = Math.floor(numberRunTime / 60);
+      let secondsRun = Math.floor(numberRunTime % 60)
+      let minutesEnd = Math.floor(numberEndTime / 60);
+      let secondsEnd = Math.floor(numberEndTime % 60)
+      let lengthRun = secondsRun.toString()
+      let lengthEnd = secondsEnd.toString()
 
-  endtime.innerHTML= ""
-  endtime.innerText = numberEndTime
+      if (lengthRun.length < 2) {
+        secondsRun = "0" + secondsRun
+      }
+      if (lengthEnd.length < 2) {
+        secondsEnd = "0" + secondsEnd
+      }
+      
+      
+      runtime.innerHTML = ""
+      runtime.innerText = minutesRun + ":" + secondsRun
+    
+      endtime.innerHTML= ""
+      endtime.innerText = minutesEnd + ":" + secondsEnd
+
+      let progress = numberRunTime.toFixed(2) / numberEndTime.toFixed(2)
+
+      let musicRun = document.querySelector('.musicbar__run')
+      let musicEnd = document.querySelector('.musicbar__end')
+      let widthLeft = progress * 450
+      let widthRight = ( 1 - progress) * 450
+      musicRun.style.width = widthLeft + "px"
+      musicEnd.style.width = widthRight + "px"
+
+    }
+    
+  }
+  catch (e) {
+    console.log("der player sit noch nicht geladen" + e)  
+    }
 
 }
+
+self.setInterval(updateTime, 100)

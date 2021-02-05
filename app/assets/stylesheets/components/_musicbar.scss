@@ -119,6 +119,7 @@
     height: 5px;
     background-color: #C9C9C9;
     margin-left: 10px;
+    transition: width 0.1s;
 }
 
 .musicbar__end {
@@ -126,6 +127,7 @@
     height: 5px;
     background-color: #384750;
     margin-right: 10px;
+    transition: width 0.1s;
 }
 
 .musicbar__sound {
