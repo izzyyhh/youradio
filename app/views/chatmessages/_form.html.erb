@@ -3,7 +3,7 @@
     <%= form.hidden_field :username, value: current_user.email %>
 
     
-    <%= form.text_field :content, id: 'content-input', class: 'chat__add',  placeholder: 'type...' %>
+    <%= form.text_field :content, id: 'content-input', class: 'chat__add',  placeholder: 'type...', autocomplete: "off" %>
   </div>
 
   <%= form.hidden_field :server_id, value: @server.id %>
