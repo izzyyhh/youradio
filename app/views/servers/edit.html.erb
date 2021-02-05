@@ -1,0 +1,34 @@
+<div class='wrapper--login'>
+
+    <div class='wrapper--login__content'>
+      <div>
+        <h1>Edit server</h1>
+      </div>
+    </div>
+    <div class='form-side'>
+      <div class='login newserver'>
+  
+      <div class='login__heading'>Your new server</div>
+      <%= form_for @server do |f| %>
+          <div class="login__input-and-label">
+          <%= f.text_field :name, autocomplete: "off", required: true %>
+          <%= f.label :name %>
+          </div>
+  
+          <div class="login__fileinput-and-label">
+          <%= f.label :serverpic %><br>
+          <%= f.file_field :serverpic %>
+          </div>
+  
+          <div style='margin-top: 2rem' class="actions">
+          <%= f.submit "Update server" %>
+          </div>
+      <% end %>
+  
+      </div>
+    <%= link_to "Back", :back, method: :get, class: 'edit__back' %>
+    </div>
+  </div>
+  
+  
+  

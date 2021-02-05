@@ -42,6 +42,11 @@
     flex-direction: column;
     justify-content: center;
     min-height: 50px;
+
+    a {
+        color: $color-white;
+        font-size: 1.1rem;
+    }
 }
 
 .playlist__icon {
