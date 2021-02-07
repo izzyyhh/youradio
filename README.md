@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+written by valentin and izzy  
+  
+## Needs
+To run this app, you will need an YouTube Data API V3. Export it as an env variable.
 
-Things you may want to cover:
+```
+export API_KEY=yourkey
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
