@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# used for server-user association, many to many
 class ServersUsersController < ApplicationController
   def new
     @servers_users = ServersUser.new
@@ -10,7 +11,9 @@ class ServersUsersController < ApplicationController
     users_selected_emails = params[:users]
     affected_server = Server.find(params[:servers_user][:server_id])
 
-    if !users_selected_emails.nil?
+    if users_selected_emails.nil?
+      redirect_to affected_server, notice: 'Kein User hinzugefügt'
+    else
       users_selected_emails.each do |email|
         new_member_assoc = ServersUser.new
         new_member = User.where(email: email).first
@@ -24,8 +27,6 @@ class ServersUsersController < ApplicationController
         end
       end
       redirect_to affected_server, notice: 'added succesfully'
-    else
-      redirect_to affected_server, notice: 'Kein User hinzugefügt'
     end
   end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# controller for chatmessages in a server, create method performs a job, which brodcasts the message to the right server
 class ChatmessagesController < ApplicationController
   def index; end
 

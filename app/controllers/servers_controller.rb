@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# a user can be part of a server. this controller manages the server
 class ServersController < ApplicationController
   before_action :authenticate_user!, :set_server, only: %i[show edit update destroy]
 

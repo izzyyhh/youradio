@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# model for the user, user_not_added lists all users which are not part of a certain server
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

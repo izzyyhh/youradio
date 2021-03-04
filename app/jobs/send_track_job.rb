@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# used to broadcast the track, that has been added by the user in the server
 class SendTrackJob < ApplicationJob
   queue_as :default
 
