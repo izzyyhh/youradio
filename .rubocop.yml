@@ -1,0 +1,9 @@
+AllCops:
+  NewCops: enable
+
+  Exclude:
+    - 'db/migrate/*'
+    - 'config/initializers/devise.rb'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'db/**/*'
