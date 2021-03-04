@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-#:nodoc:
 require_relative 'boot'
 
 require 'rails/all'
@@ -10,6 +9,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module TestRadio
+  #:nodoc:
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
