@@ -9,7 +9,7 @@ class TracksController < ApplicationController
   def show; end
 
   def create
-    apiKey = ENV.fetch('API_KEY')
+    api_key = ENV.fetch('API_KEY')
     # ENV['DATABASE_URL']
     uri = params[:track][:uri]
     uri_useable = validate_uri(uri)
@@ -18,8 +18,8 @@ class TracksController < ApplicationController
     if uri_useable
 
       youtube_id = get_youtube_id(uri)
-      url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{apiKey}"
-      details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{apiKey}"
+      url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{api_key}"
+      details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{api_key}"
       response = RestClient.get(url)
       struct = JSON.parse(response, object_class: OpenStruct)
       details = JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
