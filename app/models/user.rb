@@ -14,6 +14,7 @@ class User < ApplicationRecord
   def self.users_not_added_to_server(server_id)
     users = User.all
     users_already_added = User.joins(:servers_users).where(servers_users: { server_id: server_id })
-    users_not_added = users.reject { |u| users_already_added.include?(u) }
+
+    users.reject { |u| users_already_added.include?(u) }
   end
 end
