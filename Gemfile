@@ -68,6 +68,7 @@ gem 'redis', '~> 4.2'
 
 gem 'activestorage-validator'
 gem 'json'
+gem 'rails_best_practices'
 gem 'rake'
 gem 'rest-client'
 gem 'rubocop'

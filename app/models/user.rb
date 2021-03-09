@@ -17,4 +17,10 @@ class User < ApplicationRecord
 
     users.reject { |u| users_already_added.include?(u) }
   end
+
+  def self.part_of_server?(server_id, user)
+    users_already_added = User.joins(:servers_users).where(servers_users: { server_id: server_id })
+
+    users_already_added.include?(user)
+  end
 end

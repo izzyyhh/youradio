@@ -1,17 +1,21 @@
 <% if user_signed_in? %>
 <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
     <% if @server.present? %>
-    <div class='wrapper'>
-        <%= render 'topbar' %>
-        <%= render 'serverlist'%>
-        <%= render 'playlist' %>
-        <%= render 'addtrackmodal' %>
-        <%= render 'chat' %>
-        <%= render 'musicbar' %>
-        <%= render 'memberlist' %>
-        <div id ="player"></div>
-        <div id ="player__hider"><i class="fab fa-youtube"></i></div>
-    </div>
+        <% if User.part_of_server?(@server.id, current_user) %>
+        <div class='wrapper'>
+            <%= render 'topbar' %>
+            <%= render 'serverlist'%>
+            <%= render 'playlist' %>
+            <%= render 'addtrackmodal' %>
+            <%= render 'chat' %>
+            <%= render 'musicbar' %>
+            <%= render 'memberlist' %>
+            <div id ="player"></div>
+            <div id ="player__hider"><i class="fab fa-youtube"></i></div>
+        </div>
+        <% else %>
+            <% controller.redirect_to servers_path %>
+        <% end %>
     <% else %>
     <div class='wrapper--servernotpresent'>
         <%= render 'serverlist'%>
@@ -19,37 +23,7 @@
         <%= render 'home' %>
     </div>
     <% end %>
-<!--
-<div class='servers-index'>
-    <%= link_to 'logout', destroy_user_session_path, method: :delete %>
-    <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
 
-    <div class='swrap'>
-
-        <%= render 'serverlist'%>
-
-        <div class="server-content">
-            <% if @server.present? %>
-
-            <% if @server.serverpic.attached? %>
-                <%= image_tag url_for(@server.serverpic) %>
-            <% end %>
-
-                <%= render 'playlist' %>
-                <%= render 'chat' %>
-                <%= render 'memberlist' %>
-                <%= render 'addtrackmodal' %>
-                <button class="add-track-button">Click</button>
-
-                <div id ="player"></div>
-            <% else %>
-                <h2><%= current_user.name %>, welcome to TestRadio </h2>
-            <% end %>
-        </div>
-
-    </div>
-</div>
--->
 <% else %>
     <%= render 'shared/login' %>
 <% end %>
