@@ -9,79 +9,15 @@ class TracksController < ApplicationController
   def show; end
 
   def create
-    api_key = ENV.fetch('API_KEY')
-    # ENV['DATABASE_URL']
     uri = params[:track][:uri]
-    uri_useable = validate_uri(uri)
-    server_id = params[:track][:server_id]
+    youtube_id = get_youtube_id(uri)
 
-    if uri_useable
+    if validate_uri(uri)
+      struct = fetch_youtube_struct(youtube_id)
+      details = fetch_youtube_details(youtube_id)
 
-      youtube_id = get_youtube_id(uri)
-      url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{api_key}"
-      details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{api_key}"
-      response = RestClient.get(url)
-      struct = JSON.parse(response, object_class: OpenStruct)
-      details = JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
+      add_to_playlist_with_calculated_time(struct, details, youtube_id)
 
-      # try catch block
-
-      begin
-        # get video details from api
-        title = details.items[0].snippet.title
-        description = details.items[0].snippet.description
-        thumbnail = details.items[0].snippet.thumbnails.medium.url
-        channeltitle = details.items[0].snippet.channelTitle
-        # mehr details title, description, thumbnail,  channeltitle
-        duration = struct.items[0].contentDetails.duration
-        duration_in_s = convert_time(duration)
-
-        server_id = params[:track][:server_id]
-        @playlist = Server.find(server_id).playlist
-
-        # time calculation
-
-        # if playlist empty
-        if @playlist.tracks.count.zero?
-          @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-                                                                 starttime: Time.now, title: title,
-                                                                 channeltitle: channeltitle, description: description,
-                                                                 thumbnail: thumbnail)
-          p 'das erste im empty'
-
-        # if playlist has entries
-        else
-          p time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
-          p Time.now
-          p (time - Time.now).seconds
-          time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
-
-          # if playlist has already stopped but has entries which already have been played
-          if !@playlist.tracks.first || (time - Time.now).seconds.negative?
-            @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-                                                                   starttime: Time.now, title: title,
-                                                                   channeltitle: channeltitle, description: description,
-                                                                   thumbnail: thumbnail)
-
-          # if playlist has songs and play a song
-          else
-
-            last_track = @playlist.tracks.last
-            old_starttime = last_track.starttime
-            old_duration = last_track.duration
-            this_starttime = old_starttime + old_duration.seconds
-            @track = Server.find(server_id).playlist.tracks.create(uri: youtube_id, duration: duration_in_s,
-                                                                   starttime: this_starttime, title: title,
-                                                                   channeltitle: channeltitle, description: description,
-                                                                   thumbnail: thumbnail)
-            p 'first track existent'
-          end
-
-        end
-        SendTrackJob.perform_later(@playlist)
-      rescue StandardError
-        p 'Die eigegebene Url liefert keine Daten'
-      end
     else
       p 'Url ist empty oder nil-> so geht das nicht'
 
@@ -89,6 +25,75 @@ class TracksController < ApplicationController
   end
 
   private
+
+  def create_track_by_details(server_id, video_details, youtube_id, starttime = Time.now)
+    Server.find(server_id).playlist.tracks.create(
+      uri: youtube_id, duration: video_details.duration_in_s,
+      starttime: starttime, title: video_details.title,
+      channeltitle: video_details.channeltitle,
+      description: video_details.description,
+      thumbnail: video_details.thumbnail
+    )
+  end
+
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
+  def add_to_playlist_with_calculated_time(struct, details, youtube_id)
+    # get video details from api
+    video_details = VideoDetails.new(struct, details)
+    server_id = params[:track][:server_id]
+    @playlist = Server.find(server_id).playlist
+
+    # time calculation
+    # if playlist empty
+    if @playlist.tracks.count.zero?
+      @track = create_track_by_details(server_id, video_details, youtube_id)
+    # das erste im empty
+
+    # if playlist has entries
+    else
+      time = @playlist.tracks.last.starttime + @playlist.tracks.last.duration.seconds
+
+      # if playlist has already stopped but has entries which already have been played
+      if !@playlist.tracks.first || (time - Time.now).seconds.negative?
+        @track = create_track_by_details(server_id, video_details, youtube_id)
+
+      # if playlist has songs and play a song
+      else
+        this_starttime = calculate_starttime(@playlist)
+        @track = create_track_by_details(server_id, video_details, youtube_id, this_starttime)
+        # first track existent
+      end
+    end
+
+    SendTrackJob.perform_later(@playlist)
+  rescue StandardError => e
+    logger.error e.message
+  end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
+
+  def calculate_starttime(_playlist)
+    last_track = @playlist.tracks.last
+    old_starttime = last_track.starttime
+    old_duration = last_track.duration
+
+    old_starttime + old_duration.seconds
+  end
+
+  def fetch_youtube_struct(youtube_id)
+    api_key = ENV.fetch('API_KEY')
+
+    url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{api_key}"
+    JSON.parse(RestClient.get(url), object_class: OpenStruct)
+  end
+
+  def fetch_youtube_details(youtube_id)
+    api_key = ENV.fetch('API_KEY')
+
+    details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{api_key}"
+    JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
+  end
 
   def validate_uri(uri)
     # check if input is empty
@@ -110,14 +115,6 @@ class TracksController < ApplicationController
     params.require(:track).permit(:uri)
   end
 
-  def convert_time(dur)
-    pattern = 'PT'
-    pattern += '%HH' if dur.include? 'H'
-    pattern += '%MM' if dur.include? 'M'
-    pattern += '%SS'
-    DateTime.strptime(dur, pattern).seconds_since_midnight.to_i
-  end
-
   def get_youtube_id(url)
     id = ''
     url = url.gsub(/(>|<)/i, '').split(%r{(vi/|v=|/v/|youtu\.be/|/embed/)})
@@ -128,5 +125,29 @@ class TracksController < ApplicationController
       id = id[0]
     end
     id
+  end
+end
+
+# video details class
+class VideoDetails
+  attr_reader :title, :description, :thumbnail, :channeltitle, :duration_in_s
+
+  # rubocop:disable Metrics/AbcSize
+  def initialize(struct, details)
+    @title = details.items[0].snippet.title
+    @description = details.items[0].snippet.description
+    @thumbnail = details.items[0].snippet.thumbnails.medium.url
+    @channeltitle = details.items[0].snippet.channelTitle
+    # mehr details title, description, thumbnail,  channeltitle
+    @duration_in_s = convert_time(struct.items[0].contentDetails.duration)
+  end
+  # rubocop:enable Metrics/AbcSize
+
+  def convert_time(dur)
+    pattern = 'PT'
+    pattern += '%HH' if dur.include? 'H'
+    pattern += '%MM' if dur.include? 'M'
+    pattern += '%SS'
+    DateTime.strptime(dur, pattern).seconds_since_midnight.to_i
   end
 end
