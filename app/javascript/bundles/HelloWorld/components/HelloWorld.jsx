@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import consumer from '../../../../javascript/channels/consumer'
 
-const HelloWorld = (props) => {
-  const [name, setName] = useState(props.name);
+console.log(consumer)
+
+const HelloWorld = ({givenName}) => {
+  const [name, setName] = useState(givenName);
 
   return (
     <div>
@@ -19,7 +22,7 @@ const HelloWorld = (props) => {
 };
 
 HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired, // this is passed from the Rails view
+  givenName: PropTypes.string.isRequired, // this is passed from the Rails view
 };
 
 export default HelloWorld;
