@@ -76,3 +76,5 @@ gem 'rubocop'
 gem "webpacker", "~> 5"
 
 gem "react_on_rails", "= 12.0.4"
+
+gem 'mini_racer', platforms: :ruby
