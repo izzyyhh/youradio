@@ -8,8 +8,8 @@
             <%= render 'playlist' %>
             <%= render 'addtrackmodal' %>
             <%= render 'chat' %>
+            <%= react_component('ServerContent', props: {serverName: @server.name})%>
             <%= render 'musicbar' %>
-            <%= render 'memberlist' %>
             <div id ="player"></div>
             <div id ="player__hider"><i class="fab fa-youtube"></i></div>
         </div>
