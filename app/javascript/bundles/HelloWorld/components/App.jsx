@@ -4,9 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import HelloWorld from './HelloWorld'
 
 const App = () => {
-    if(true)
-
-    return true ? <Redirect to="/servers" /> : (
+    return (
     <div>12312312312321</div>
 )};
 

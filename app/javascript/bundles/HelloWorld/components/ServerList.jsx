@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import ServerListItem from './ServerListItem'
 
-const ServerList = ({ }) => (
+const ServerList = ({servers, serverpics}) => {
+  return(
   <div>
-    <h3>
-      Hello,
-      {name}!
-    </h3>
-    <hr />
-    <form>
-      <label htmlFor="name">
-        Say hello to:
-        <input id="name" type="text" value={name} onChange={(e) => updateName(e.target.value)} />
-      </label>
-    </form>
+      <h3>Hello ServerList</h3>
+      <ul>
+        {
+          servers.map(server => (
+            <ServerListItem name={server.name}/>
+          ))
+        }
+      </ul>
   </div>
-);
-
-HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired,
-  updateName: PropTypes.func.isRequired,
+  )
 };
 
-export default HelloWorld;
+ServerList.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   updateName: PropTypes.func.isRequired,
+};
+
+export default ServerList;

@@ -1,2 +1,6 @@
-<h1>Hello World</h1>
-<%= react_component("App", props: @hello_world_props, prerender: false) %>
+<%= servers = current_user.servers %>
+<%= pic_urls = servers.map {|server| server.serverpic.attached? ? url_for(server.serverpic) : ''}
+%>
+
+<%= react_component("ServerList", props: {servers: servers, serverpics: pic_urls}) %>
+<!-- <%= react_component("App", props: @hello_world_props, prerender: false) %> -->
