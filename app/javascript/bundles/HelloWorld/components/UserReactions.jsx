@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import ReactionChannel from '../../../channels/reactions_channel'
+import ReactionChannel, { server_id } from '../../../channels/reactions_channel'
 
 // mvp version of reactions, counters are not saved in backend
 // thus users, will have different counters, when joined on different times
@@ -35,7 +35,7 @@ const UserReactions = () => {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': document.querySelector('[name=csrf-token]').content,
       },
-      body: JSON.stringify({ reactionType }),
+      body: JSON.stringify({ reactionType, server_id }),
     })}
 
   return(

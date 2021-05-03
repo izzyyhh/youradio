@@ -28,3 +28,4 @@ const ReactionsChannel = consumer.subscriptions.create(
 console.log("from reacitonjs" + ReactionsChannel);
 
 export default ReactionsChannel;
+export { server_id };

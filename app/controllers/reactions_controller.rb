@@ -7,6 +7,7 @@ class ReactionsController < ApplicationController
 
   def create
     reaction_type = params[:reaction][:reactionType]
-    ActionCable.server.broadcast('reaction_channel_2', { reactionType: reaction_type })
+    server_id = params[:reaction][:server_id]
+    ActionCable.server.broadcast("reaction_channel_#{server_id}", { reactionType: reaction_type })
   end
 end
