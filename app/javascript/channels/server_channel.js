@@ -155,16 +155,14 @@ function onPlayerStateChange(event) {
     event.target.loadVideoById({ videoId: "" });
     fetchPlaylistAndPlayVideo();
 
-    
-    fetch('http://localhost:3000/reactions', {
-      method: 'POST',
+    fetch("http://localhost:3000/reactions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': document.querySelector('[name=csrf-token]').content,
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": document.querySelector("[name=csrf-token]").content,
       },
       body: JSON.stringify({ reactionType: "RESET", server_id }),
-    })
-
+    });
   } else if (event.data == YT.PlayerState.CUED) {
   } else if (event.data == YT.PlayerState.BUFFERING) {
   }
