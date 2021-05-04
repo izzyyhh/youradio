@@ -11,7 +11,7 @@ const HomeListCard = ({serverName, serverOwner, serverPic}) => {
                     <img src={serverPic}></img>
                 </div>
                 <h3 className='explore-card__heading'>{serverName}</h3>
-                <p className='explore-card__owner'>clapperfool</p>
+                <p className='explore-card__owner'>{serverOwner}</p>
         </div>
     )
 }

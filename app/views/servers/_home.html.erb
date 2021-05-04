@@ -1,15 +1,17 @@
 <%
 public_servers = Server.where(is_public: :true)
-server_urls = public_servers.map{|server| url_for(server)}
-server_pics = public_servers.map {|server| server.serverpic.attached? ? url_for(server.serverpic) : asset_path('radioquad.png')}
+server_list = public_servers.map{|server, index| {
+    name: server.name,
+    url: url_for(server),
+    imageUrl: server.serverpic.attached? ? url_for(server.serverpic) : asset_path('radioquad.png'),
+    owner: server.owner.present? ? User.find(server.owner).name : 'clapperfool',
+}}
 %>
 
 <div class='home'>
     <%= react_component('Home', props: {
         currentUserName: current_user.name,
         welcomeText: "We are happy that you chose to use youradio. Youradio is place for you and your friends, that lets your friendgroup create a realtime-playlist. Just add a track to the playlist and use the chat to discuss the current sounds. Lets go!",
-        serverList: public_servers,
-        serverUrls: server_urls,
-        serverPics: server_pics
+        serverList: server_list
     }) %>
 </div>

@@ -1,6 +1,11 @@
 @import '../utilities/variables';
 @import '../base/fonts';
 
+
+.home__explore {
+    margin-top: 2rem;
+}
+
 .explore__list{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 230px));

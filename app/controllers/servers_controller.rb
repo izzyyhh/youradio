@@ -40,6 +40,6 @@ class ServersController < ApplicationController
   end
 
   def server_params
-    params.require(:server).permit(:name, :serverpic)
+    params.require(:server).permit(:name, :serverpic, :owner)
   end
 end

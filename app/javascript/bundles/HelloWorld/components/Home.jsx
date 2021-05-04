@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import HomeList from './HomeList'
 
-const Home = ({currentUserName, welcomeText, serverList, serverUrls, serverPics}) => {
+const Home = ({currentUserName, welcomeText, serverList}) => {
     return (
         <section className='home__section'>
             <h1 className='home__heading'>Hello {currentUserName}</h1>
@@ -11,7 +11,7 @@ const Home = ({currentUserName, welcomeText, serverList, serverUrls, serverPics}
                 {welcomeText}
             </p>
 
-            <HomeList serverList={serverList} serverUrls={serverUrls} serverPics={serverPics}/>
+            <HomeList serverList={serverList}/>
         </section>
     )
 }
