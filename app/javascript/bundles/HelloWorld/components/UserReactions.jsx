@@ -14,7 +14,7 @@ const UserReactions = () => {
   const [likeCounter, setLikeCounter] = useState(likes)
   const [dislikeCounter, setDislikeCounter] = useState(dislikes)
   
-  useEffect(() => { 
+  useEffect(() => { // react testing library hooks
     ReactionChannel.received = (data) => {
       switch(data.reactionType) {
         case LIKE_REACTION:
@@ -37,7 +37,7 @@ const UserReactions = () => {
 
   const handleReaction = async (reactionType) => {
 
-    await fetch('http://localhost:3000/reactions', {
+    await fetch('/reactions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
