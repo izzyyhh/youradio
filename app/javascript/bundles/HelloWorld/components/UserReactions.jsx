@@ -8,6 +8,7 @@ let likes = 0;
 let dislikes = 0;
 const LIKE_REACTION = 'LIKE'
 const DISLIKE_REACTION = 'DISLIKE'
+const RESET_REACTION = 'RESET'
 
 const UserReactions = () => {
   const [likeCounter, setLikeCounter] = useState(likes)
@@ -24,6 +25,13 @@ const UserReactions = () => {
           dislikes+=1
           setDislikeCounter(dislikeCounter +1)
           break;
+        case RESET_REACTION:
+          // a broadcast is sent, when video finishes, then
+          // reaction counters must be reset
+          likes = 0, dislikes = 0
+          setLikeCounter(likes)
+          setDislikeCounter(dislikes)
+          break;
       }
     }}, [likes, dislikes])
 
@@ -36,20 +44,24 @@ const UserReactions = () => {
         'X-CSRF-TOKEN': document.querySelector('[name=csrf-token]').content,
       },
       body: JSON.stringify({ reactionType, server_id }),
-    })}
+    })
+  }
 
   return(
-  <div>
-    <div id='likeCounter'>{likeCounter}Likes</div>
-      <button onClick={() => handleReaction(LIKE_REACTION)}>Like {likeCounter}</button>
-      <button onClick={() => handleReaction(DISLIKE_REACTION)}>Dislike {dislikeCounter}</button>
-  </div>
+    <>
+    <div className='content_counterline'>
+      <div id='likeCounter' className='counter-box'>{likeCounter} <i className="fas fa-thumbs-up"></i></div>
+      <div id='dislikeCounter' className='counter-box'>{dislikeCounter} <i className="fas fa-thumbs-down"></i></div>
+    </div>
+      <div className='content_reactionbuttonline'>
+          <button onClick={() => handleReaction(LIKE_REACTION)}><i className="fas fa-thumbs-up"></i></button>
+          <button onClick={() => handleReaction(DISLIKE_REACTION)}><i className="fas fa-thumbs-down"></i></button>
+      </div>
+    </>
   )
 }
 
 UserReactions.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   updateName: PropTypes.func.isRequired,
 };
 
 export default UserReactions;

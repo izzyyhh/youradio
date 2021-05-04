@@ -10,4 +10,8 @@ const ServerContent = ({serverName}) => {
     </div>
 )};
 
+ServerContent.propTypes = {
+   serverName: PropTypes.string.isRequired,
+};
+
 export default ServerContent;

@@ -143,6 +143,7 @@ function onPlayerReady(event) {
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 var done = false;
+
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
     hider.style.display = "none";
@@ -153,6 +154,17 @@ function onPlayerStateChange(event) {
     hider.style.display = "flex";
     event.target.loadVideoById({ videoId: "" });
     fetchPlaylistAndPlayVideo();
+
+    
+    fetch('http://localhost:3000/reactions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('[name=csrf-token]').content,
+      },
+      body: JSON.stringify({ reactionType: "RESET", server_id }),
+    })
+
   } else if (event.data == YT.PlayerState.CUED) {
   } else if (event.data == YT.PlayerState.BUFFERING) {
   }

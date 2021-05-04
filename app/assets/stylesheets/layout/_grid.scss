@@ -9,7 +9,7 @@
     grid-template-areas: "serverbar playlist topbar topbar"
                          "serverbar playlist content chat"
                          "serverbar musicbar musicbar musicbar";
-    grid-template-columns: 70px 230px 1fr 230px;
+    grid-template-columns: 70px 230px 1fr 460px;
     grid-template-rows: 50px 1fr 100px;
 }
 .wrapper--servernotpresent {
