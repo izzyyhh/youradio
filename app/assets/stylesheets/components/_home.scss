@@ -4,6 +4,10 @@
 .home {
     background-color: $color-background-chat;
     padding: 2rem;
+    overflow-y: scroll;
+}
+.home::-webkit-scrollbar {
+    display: none;
 }
 .home__heading {
     color: whitesmoke;
