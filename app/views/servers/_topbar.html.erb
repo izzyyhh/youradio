@@ -1,5 +1,12 @@
+<%
+user_name = current_user.name
+user_pp_url = current_user.profilepic.attached? ? url_for(current_user.profilepic) : asset_path('default_pp.png')
+
+%>
+
 <div class='topbar'>
-    <div class='topbar__user'>
+<%= react_component('Topbar', props: {userName: user_name, ppImgUrl: user_pp_url, isServerPresentAndPublic: @server.present? && @server.is_public?}) %>
+    <!--<div class='topbar__user'>
         <% if current_user.profilepic.attached? %>
             <div class='topbar__userpic'><%= image_tag(url_for(current_user.profilepic)) %></div>
         <% else %>
@@ -11,4 +18,5 @@
             <%= link_to '<i class="fas fa-sign-out-alt"></i>'.html_safe, destroy_user_session_path, method: :delete, class: 'topbar__logout', data: { confirm: 'Are you sure, you want to logout?' } %>
         </div>
     </div>
+-->
 </div>

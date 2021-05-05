@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :servers_users
   resources :tracks
   resources :reactions
+  resources :subscriptions
 
   root to: 'servers#index'
 end
