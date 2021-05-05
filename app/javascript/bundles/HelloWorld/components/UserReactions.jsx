@@ -13,8 +13,10 @@ const RESET_REACTION = 'RESET'
 
 
 const UserReactions = () => {
-	const [likeCounter, setLikeCounter] = useState(likes)
-	const [dislikeCounter, setDislikeCounter] = useState(dislikes)
+	const [reaction, setReaction] = useState({
+		likeCounter: likes,
+		dislikeCounter: dislikes
+	})
 	const [userList, setUserList] = useState(list)
 
 	useEffect(() => {
@@ -22,21 +24,29 @@ const UserReactions = () => {
 		switch(data.reactionType) {
 			case LIKE_REACTION:
 				likes +=1
-				setLikeCounter(likeCounter + 1)
+				setReaction({
+					likeCounter: reaction.likeCounter + 1,
+					dislikeCounter: reaction.dislikeCounter
+				})
 				break;
 			case DISLIKE_REACTION:
 				dislikes+=1
-				setDislikeCounter(dislikeCounter +1)
+				setReaction({
+					likeCounter: reaction.likeCounter,
+					dislikeCounter: reaction.dislikeCounter + 1
+				})
 				break;
 			case RESET_REACTION:
 				// a broadcast is sent, when video finishes, then
 				// reaction counters must be reset
-				likes = 0, dislikes = 0
-				setLikeCounter(likes)
-				setDislikeCounter(dislikes)
+				likes = 0
+				dislikes = 0
+				setReaction({
+					likeCounter: 0,
+					dislikeCounter: 0
+				})
 				break;
 			case "active":
-				console.log(data.reactionType)
 				getUser()
 				break;
 		}
@@ -83,8 +93,8 @@ const UserReactions = () => {
 						<button onClick={() => handleReaction(DISLIKE_REACTION)}><i className="fas fa-thumbs-down"></i></button>
 					</div>
 					<div className='content_counterline'>
-						<div id='likeCounter' className='counter-box'>{likeCounter} <i className="fas fa-thumbs-up"></i></div>
-						<div id='dislikeCounter' className='counter-box'>{dislikeCounter} <i className="fas fa-thumbs-down"></i></div>
+						<div id='likeCounter' className='counter-box'>{reaction.likeCounter} <i className="fas fa-thumbs-up"></i></div>
+						<div id='dislikeCounter' className='counter-box'>{reaction.dislikeCounter} <i className="fas fa-thumbs-down"></i></div>
 					</div>
 				</div>
 			</div>
