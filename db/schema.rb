@@ -49,8 +49,13 @@ ActiveRecord::Schema.define(version: 2021_05_04_200954) do
     t.index ["server_id"], name: "index_playlists_on_server_id"
   end
 
-# Could not dump table "servers" because of following StandardError
-#   Unknown type 'User' for column 'owner'
+  create_table "servers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_public", default: true
+    t.integer "owner"
+  end
 
   create_table "servers_users", force: :cascade do |t|
     t.integer "user_id", null: false

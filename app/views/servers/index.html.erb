@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 <div id='server-id' data-server-id='<%= @server.try(:id) %>'></div>
     <% if @server.present? %>
-        <% if User.part_of_server?(@server.id, current_user) %>
+        <% if User.part_of_server?(@server.id, current_user) || @server.is_public? %>
         <div class='wrapper'>
             <%= render 'topbar' %>
             <%= render 'serverlist'%>
