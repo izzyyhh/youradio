@@ -155,7 +155,7 @@ function onPlayerStateChange(event) {
     event.target.loadVideoById({ videoId: "" });
     fetchPlaylistAndPlayVideo();
 
-    fetch("http://localhost:3000/reactions", {
+    fetch("/reactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
