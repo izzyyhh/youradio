@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2021_05_05_133147) do
   end
 
   create_table "active_userlists", force: :cascade do |t|
-    t.integer "server_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "server_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_active"
