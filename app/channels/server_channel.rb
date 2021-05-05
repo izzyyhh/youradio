@@ -5,15 +5,18 @@ class ServerChannel < ApplicationCable::Channel
   def subscribed
     stream_from "server_channel_#{params[:server_id]}"
     server_id = params[:server_id]
-    user_id = current_user
+    user_id = current_user.id
     p "________________________________"
     p "subscribe"
     p server_id
     p user_id
 
-    @currentServersUser = ServersUser.where(server_id: server_id).where(user_id: user_id)
-    @currentServersUser.update(is_admin: true)
-    p @currentServersUser
+    if ActiveUserlist.where(server_id: server_id, user_id: user_id).empty?
+      ActiveUserlist.create(server_id: server_id, user_id: user_id, is_active: true)
+    else
+      ActiveUserlist.where(server_id: server_id, user_id: user_id).first.update(is_active: true)
+    end
+
     SendUserJob.perform_later(server_id)
   end
 
@@ -25,12 +28,12 @@ class ServerChannel < ApplicationCable::Channel
     p server_id
     p user_id
 
-    @currentServersUser = ServersUser.where(server_id: server_id).where(user_id: user_id)
-    @currentServersUser.update(is_admin: false)
-    p @currentServersUser
+    if ActiveUserlist.where(server_id: server_id, user_id: user_id).empty?
+      ActiveUserlist.create(server_id: server_id, user_id: user_id, is_active: false)
+    else
+      ActiveUserlist.where(server_id: server_id, user_id: user_id).first.update(is_active: false)
+    end
 
     SendUserJob.perform_later(server_id)
-
-
   end
 end

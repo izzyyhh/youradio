@@ -51,7 +51,7 @@ const UserReactions = () => {
 	const getUser = async () => {
 		const data = await fetch(`/servers/${server_id}/userlist/`)
 		const userlist = await data.json()
-		console.log(userlist.user)
+		console.log(userlist)
 		setUserList(userlist)
 	}
 
@@ -89,8 +89,8 @@ const UserReactions = () => {
 				</div>
 			</div>
 			<ul className="userlist">
-				{userList.userList.map(user => (
-					<li key={user.id}><img className="presence-img"src={user[1]}></img><span>{user[0].name}</span></li>
+				{userList.userlist.map(user => (
+					<li key={user.id}><img className="presence-img"src={user.url}></img><span>{user.name}</span></li>
 				))}
 			</ul>
 		</>
