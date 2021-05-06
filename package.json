@@ -27,11 +27,19 @@
   },
   "scripts": {
     "lint": "prettier --check **/*.{js,json}",
-    "lint-fix": "prettier --write **/*.{js,json}"
+    "lint-fix": "prettier --write **/*.{js,json}",
+    "test": "jest"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@testing-library/react": "^11.2.6",
+    "jest": "^26.6.3",
     "prettier": "2.2.1",
     "webpack-dev-server": "^3.11.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ]
   }
 }
