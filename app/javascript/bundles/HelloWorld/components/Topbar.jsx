@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Button from './Button'
 
-const postSubscription = (setIsSubscribed) => {
-    fetch('/subscriptions', {
+const postSubscription = () => {
+    return fetch('/subscriptions', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -14,13 +14,10 @@ const postSubscription = (setIsSubscribed) => {
                                     .getAttribute("data-server-id")
                             }),
     })
-    .then(() => {
-        setIsSubscribed(true)
-    })
 }
 
-const deleteSubscription = (setIsSubscribed) => {
-    fetch(`/subscriptions/${document.getElementById("server-id").getAttribute("data-server-id")}`, {
+const deleteSubscription = () => {
+    return fetch(`/subscriptions/${document.getElementById("server-id").getAttribute("data-server-id")}`, {
         method: 'DELETE',
         headers: {
         'Content-Type': 'application/json',
@@ -31,12 +28,9 @@ const deleteSubscription = (setIsSubscribed) => {
                                     .getAttribute("data-server-id")
                             }),
     })
-    .then(() => {
-        setIsSubscribed(false)
-    })
 }
 
-const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want to logout?", isServerPresentAndPublic=false}) => {
+const useSubscription = (isServerPresentAndPublic) => {
     const [isSubscribed, setIsSubscribed] = useState()
 
     useEffect(()=> {
@@ -47,24 +41,36 @@ const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want 
         }
     }, [])
 
-  return(
-      <section>
-        <div className='topbar__user'>
-                <div className='topbar__userpic'><img src={ppImgUrl}></img></div>
-            <span>{userName}</span>
-            <div className='topbar__actions'>
-                <a href='/users/edit'><i className="fas fa-cog"></i></a>
-                <a href='/users/sign_out' data-confirm={logOutConfirmation} className='topbar__logout' rel='nofollow' data-method="delete"><i className='fas fa-sign-out-alt'></i></a>
-                {
-                    isServerPresentAndPublic ?
-                    (
-                        isSubscribed ? <Button className='subscribe-button' onClick={() => {deleteSubscription(setIsSubscribed)}}>Unfollow</Button> :<Button className='subscribe-button' onClick={()=> {postSubscription(setIsSubscribed)}}>Follow</Button> 
-                    ) : (<></>)
-                }
+    return {
+        isSubscribed,
+        deleteSubscription: async () => deleteSubscription().then(() => {setIsSubscribed(false)}),
+        createSubscription: async () => postSubscription().then(() => {setIsSubscribed(true)})
+    }
+}
+
+const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want to logout?", isServerPresentAndPublic=false}) => {
+    const {isSubscribed, deleteSubscription, createSubscription} = useSubscription(isServerPresentAndPublic)
+    console.log(isSubscribed)
+    console.log(isServerPresentAndPublic)
+
+    return(
+        <section>
+            <div className='topbar__user'>
+                    <div className='topbar__userpic'><img src={ppImgUrl}></img></div>
+                <span>{userName}</span>
+                <div className='topbar__actions'>
+                    <a href='/users/edit'><i className="fas fa-cog"></i></a>
+                    <a href='/users/sign_out' data-confirm={logOutConfirmation} className='topbar__logout' rel='nofollow' data-method="delete"><i className='fas fa-sign-out-alt'></i></a>
+                    {
+                        isServerPresentAndPublic ?
+                        (
+                            isSubscribed ? <Button className='subscribe-button' onClick={deleteSubscription}>Unfollow</Button> :<Button className='subscribe-button' onClick={createSubscription}>Follow</Button> 
+                        ) : (<></>)
+                    }
+                </div>
             </div>
-        </div>
-    </section>
-  )
+        </section>
+    )
 };
 
 Topbar.propTypes = {
