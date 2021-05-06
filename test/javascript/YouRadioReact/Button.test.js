@@ -1,5 +1,11 @@
 import React from "react";
-import {  render, cleanup, queryByText, fireEvent, shallow, } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  queryByText,
+  fireEvent,
+  shallow,
+} from "@testing-library/react";
 import Button from "../../../app/javascript/bundles/YouRadioReact/components/Button";
 
 afterEach(cleanup);
