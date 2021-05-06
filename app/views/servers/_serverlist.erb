@@ -1,7 +1,7 @@
 <div class='serverbar'>
     <div class='serverbar__scroll'>
         <div class="serverbar__home">
-            <%= link_to "<i class='serverbar__home-icon fas fa-home fa-lg'></i>".html_safe, servers_path, class: "serverbar__home"%>
+            <%= link_to "<i class='serverbar__home-icon fas fa-home fa-lg'></i>".html_safe, servers_path, class: "serverbar__home", method: :get%>
         </div>
         <div class='serverbar__line'></div>
         <% if !@server.present? %>
