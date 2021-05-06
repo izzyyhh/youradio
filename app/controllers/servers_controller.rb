@@ -14,7 +14,7 @@ class ServersController < ApplicationController
                else
                  []
                end
-    #SendUserJob.perform_later(@server.id)
+    # SendUserJob.perform_later(@server.id)
     render 'index'
   end
 

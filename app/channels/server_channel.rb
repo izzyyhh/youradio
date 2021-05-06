@@ -6,8 +6,8 @@ class ServerChannel < ApplicationCable::Channel
     stream_from "server_channel_#{params[:server_id]}"
     server_id = params[:server_id]
     user_id = current_user.id
-    p "________________________________"
-    p "subscribe"
+    p '________________________________'
+    p 'subscribe'
     p server_id
     p user_id
 
@@ -23,8 +23,8 @@ class ServerChannel < ApplicationCable::Channel
   def unsubscribed
     server_id = params[:server_id]
     user_id = current_user
-    p "________________________________"
-    p "unsubscribe"
+    p '________________________________'
+    p 'unsubscribe'
     p server_id
     p user_id
 
