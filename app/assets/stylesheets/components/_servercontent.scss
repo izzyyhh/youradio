@@ -124,6 +124,10 @@
 
 }
 
+.userlist::-webkit-scrollbar {
+    display: none;
+}
+
 #reaction-up {
     color: #A9DBA8;
     transition: all 0.5s ease-in;
