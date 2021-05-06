@@ -34,12 +34,16 @@
   "devDependencies": {
     "@testing-library/react": "^11.2.6",
     "jest": "^26.6.3",
+    "mock-prop-types": "^2.1.5",
     "prettier": "2.2.1",
     "webpack-dev-server": "^3.11.2"
   },
   "jest": {
     "testMatch": [
       "**/test/**/*.test.js"
+    ],
+    "setupFiles": [
+      "./test/javascript/jestSetup.js"
     ]
   }
 }

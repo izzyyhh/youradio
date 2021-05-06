@@ -8,5 +8,5 @@ import Topbar from "../bundles/YouRadioReact/components/Topbar";
 ReactOnRails.register({
   ServerContent,
   Home,
-  Topbar
+  Topbar,
 });

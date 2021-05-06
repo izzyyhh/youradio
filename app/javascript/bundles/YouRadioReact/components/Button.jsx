@@ -11,6 +11,7 @@ const Button = ({onClick, children, className}) => {
 
 Button.propTypes = {
    onClick: PropTypes.func,
+   className: PropTypes.string
 };
 
 export default Button;
