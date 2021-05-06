@@ -10,7 +10,6 @@ let dislikes = 0;
 let heart = 0;
 let fire = 0;
 let list = [];
-let currentUser = ''
 const LIKE_REACTION = 'LIKE'
 const DISLIKE_REACTION = 'DISLIKE'
 const HEART_REACTION = 'HEART'
@@ -97,7 +96,6 @@ const UserReactions = () => {
 	const getUser = async () => {
 		const data = await fetch(`/servers/${server_id}/userlist/`)
 		const userlist = await data.json()
-		currentUser = userlist.current_user.id
 		setUserList(userlist)
 	}
 
@@ -108,7 +106,7 @@ const UserReactions = () => {
 			'Content-Type': 'application/json',
 			'X-CSRF-TOKEN': document.querySelector('[name=csrf-token]').content,
 			},
-			body: JSON.stringify({ reactionType, server_id, currentUser }),
+			body: JSON.stringify({ reactionType, server_id}),
 		})
 	}
 
