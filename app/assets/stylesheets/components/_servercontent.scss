@@ -23,40 +23,59 @@
     }
 }
 
-.content_counterline {
-    width: 150px;
-    bottom: 1.5rem;
-    right: 2rem;
-    display: flex;
-    justify-content: space-between;
-}
 
 .content_reactionbuttonline {
-    width: 200px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     bottom: 1rem;
     left: 2rem;
 
     button {
         cursor: pointer;
         border: 0;
-        border-radius: 5px;
+        border-radius: 100%;
         color: whitesmoke;
         height: 40px;
-        width: 80px;
+        width: 40px;
         background-color: #384750;
-
+        margin-left: 7px;
+        margin-right: 7px;
         i {
             color: #A9DBA8;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     }
 
     button:hover{
         background-color: #2a2828e5;
     }
+
+    .counterleft-wrapper {
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .counterright-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+    }
+    .counter-box {
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: black;
+        border-radius: 10px;
+        padding: 0 10px;
+        font-size: 1.2rem;
+    }
 }
+
 
 .player-complete {
     height: 450px;
@@ -91,10 +110,74 @@
     li {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         margin-bottom: 5px;
         margin: auto;
+        margin-bottom: 0;
     }
 
+}
+
+#reaction-up {
+    color: #A9DBA8;
+    transition: all 0.5s ease-in;
+    margin-bottom: 60px;
+}
+
+#reaction-down {
+    color: #A9DBA8;
+    transition: all 0.5s ease-in;
+    margin-bottom: 60px;
+}
+
+#reaction-heart {
+    transition: all 0.5s ease-in;
+    margin-bottom: 60px;
+}
+
+#reaction-fire {
+    transition: all 0.5s ease-in;
+    margin-bottom: 60px;
+}
+
+.reactionLeftActive {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(10px, 60px);
+}
+
+.reactionRightActive {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-10px, 60px);
+}
+
+.username {
+    font-size: 1rem;
+}
+
+.presence-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.fa-heart {
+    color: red;
+}
+
+.fa-fire-alt {
+    color: orange;
+}
+
+.fa-thumbs-up{
+    color: #C9C9C9;
+}
+
+.fa-thumbs-down {
+    color: #C9C9C9;
 }
