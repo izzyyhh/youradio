@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+// not finished
 const ServerListItem = ({name, imgUrl}) => {
   return(
     <div className='serverbar__dot'>

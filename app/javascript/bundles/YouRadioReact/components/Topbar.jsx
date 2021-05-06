@@ -50,8 +50,6 @@ const useSubscription = (isServerPresentAndPublic) => {
 
 const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want to logout?", isServerPresentAndPublic=false}) => {
     const {isSubscribed, deleteSubscription, createSubscription} = useSubscription(isServerPresentAndPublic)
-    console.log(isSubscribed)
-    console.log(isServerPresentAndPublic)
 
     return(
         <section>
@@ -75,7 +73,9 @@ const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want 
 
 Topbar.propTypes = {
    userName: PropTypes.string.isRequired,
-   ppImgUrl: PropTypes.string.isRequired
+   ppImgUrl: PropTypes.string.isRequired,
+   logOutConfirmation: PropTypes.string,
+   isServerPresentAndPublic: PropTypes.bool
 };
 
 export default Topbar;
