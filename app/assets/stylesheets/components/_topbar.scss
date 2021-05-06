@@ -42,3 +42,20 @@
 .topbar__actions {
     margin-left: .5rem;
 }
+
+.subscribe-button{
+    text-align: center;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    color: $color-click;
+    height: 40px;
+    width: 100px;
+    background-color: #1a1b1b;
+    font-weight: bolder;
+    margin-left: 800px;
+}
+
+.subscribe-button:hover{
+    background-color: #2a2828e5;
+}

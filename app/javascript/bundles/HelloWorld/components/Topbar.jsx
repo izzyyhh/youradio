@@ -58,7 +58,7 @@ const Topbar = ({userName, ppImgUrl, logOutConfirmation="Are you sure, you want 
                 {
                     isServerPresentAndPublic ?
                     (
-                        isSubscribed ? <Button onClick={() => {deleteSubscription(setIsSubscribed)}}>Unsubscribe</Button> :<Button onClick={()=> {postSubscription(setIsSubscribed)}}>Subscribe</Button> 
+                        isSubscribed ? <Button className='subscribe-button' onClick={() => {deleteSubscription(setIsSubscribed)}}>Unfollow</Button> :<Button className='subscribe-button' onClick={()=> {postSubscription(setIsSubscribed)}}>Follow</Button> 
                     ) : (<></>)
                 }
             </div>
