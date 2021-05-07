@@ -32,3 +32,12 @@
         font-size: 3rem;
     }
 }
+
+@media screen and (max-width:1420px) {
+    #player {
+        width: 562px;
+    }
+    #player__hider {
+        width: 562px;
+    }
+}
