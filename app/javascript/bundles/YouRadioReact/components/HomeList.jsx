@@ -12,7 +12,7 @@ const HomeList = ({serverList}) => {
                 serverList.map((server) => (
                     <li key={server.url}>
                         <a href={server.url} data-method='get'>
-                            {<HomeListCard serverName={server.name} serverPic={server.imageUrl} serverOwner={server.owner} />}
+                            {<HomeListCard serverName={server.name} serverPic={server.imageUrl} serverOwner={server.owner} serverId={server.id} />}
                         </a>
                     </li>
                 ))

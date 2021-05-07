@@ -101,3 +101,14 @@
 .explore-card:hover .explore-card__overlay {
     visibility: visible;
 }
+
+.active-user-counter {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    color: whitesmoke;
+
+    i{
+        padding-left: 5px;
+    }
+}

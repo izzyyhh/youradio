@@ -1,6 +1,7 @@
 <%
 public_servers = Server.where(is_public: :true)
 server_list = public_servers.map{|server, index| {
+    id: server.id,
     name: server.name,
     url: url_for(server),
     imageUrl: server.serverpic.attached? ? url_for(server.serverpic) : asset_path('radioquad.png'),
