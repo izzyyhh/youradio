@@ -110,6 +110,8 @@
     margin-top: 0;
     max-height: 400px;
     overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
     li {
         display: flex;
@@ -126,6 +128,8 @@
 
 .userlist::-webkit-scrollbar {
     display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 #reaction-up {

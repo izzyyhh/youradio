@@ -17,8 +17,9 @@
     background: #1C1C1C;
 }
 .signup {
-    height: 520px;
+    height: 520px; 
     width: 400px;
+    padding-bottom: 2rem;
 }
 .edituser {
     position: relative;
@@ -222,4 +223,10 @@
 
 #error_explanation {
     color: rgba(255, 0, 0, 0.568);
+}
+
+@-moz-document url-prefix() {
+    .signup {
+        height: 540px !important;
+    }
 }
