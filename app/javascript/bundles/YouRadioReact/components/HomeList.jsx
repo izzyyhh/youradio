@@ -24,7 +24,7 @@ const HomeList = ({serverList}) => {
 }
 
 HomeList.propTypes = {
-    currentUserName: PropTypes.string,
+    serverList: PropTypes.array,
 }
 
 export default HomeList

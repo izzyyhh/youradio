@@ -30,7 +30,10 @@ const HomeListCard = ({serverName, serverOwner, serverPic, serverId}) => {
 }
 
 HomeListCard.propTypes = {
-    currentUserName: PropTypes.string,
+    serverName: PropTypes.string,
+    serverPic: PropTypes.string,
+    serverOwner: PropTypes.string,
+    serverId: PropTypes.number
 }
 
 export default HomeListCard
