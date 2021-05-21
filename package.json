@@ -26,8 +26,8 @@
     "node": "16.0.0"
   },
   "scripts": {
-    "lint": "prettier --check **/*.{js,json}",
-    "lint-fix": "prettier --write **/*.{js,json}",
+    "lint": "prettier --check **/*.{js,json,jsx}",
+    "lint-fix": "prettier --write **/*.{js,json,jsx}",
     "test": "jest"
   },
   "version": "0.1.0",

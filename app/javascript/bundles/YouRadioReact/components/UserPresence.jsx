@@ -21,14 +21,13 @@
 //         }
 //         getUser()
 //     }, [])
-    
+
 //     const getUser = async () => {
 //         const data = await fetch(`/servers/${server_id}/userlist/`)
 //         const userlist = await data.json()
 //         console.log(userlist)
-        
-//         setUserList(userlist)
 
+//         setUserList(userlist)
 
 //     }
 

@@ -10,12 +10,10 @@ import HomeListCard from "../../../app/javascript/bundles/YouRadioReact/componen
 
 afterEach(cleanup);
 describe("HomeListCard", () => {
-    it("given serverName is rendered", () => {
+  it("given serverName is rendered", () => {
     global.fetch = jest.fn(() => new Promise((res, rej) => {}));
     const serverName = "fake server";
-    const { container } = render(
-      <HomeListCard serverName={serverName} />
-    );
+    const { container } = render(<HomeListCard serverName={serverName} />);
 
     expect(queryByText(container, serverName)).toBeTruthy();
   });
@@ -23,9 +21,7 @@ describe("HomeListCard", () => {
   it("given serverOwner is rendered", () => {
     global.fetch = jest.fn(() => new Promise((res, rej) => {}));
     const serverOwner = "fake owner";
-    const { container } = render(
-      <HomeListCard serverOwner={serverOwner} />
-    );
+    const { container } = render(<HomeListCard serverOwner={serverOwner} />);
 
     expect(queryByText(container, serverOwner)).toBeTruthy();
   });
@@ -33,9 +29,7 @@ describe("HomeListCard", () => {
   it("component can display an image", () => {
     global.fetch = jest.fn(() => new Promise((res, rej) => {}));
     const serverPic = "fake img";
-    const { container } = render(
-      <HomeListCard serverPic={serverPic} />
-    );
+    const { container } = render(<HomeListCard serverPic={serverPic} />);
 
     expect(container.querySelector("img")).toBeTruthy();
   });

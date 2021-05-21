@@ -1,5 +1,11 @@
-import {LIKE_REACTION, DISLIKE_REACTION, FIRE_REACTION, HEART_REACTION, RESET_REACTION, ACTIVE_REACTION} from './constants'
-
+import {
+  LIKE_REACTION,
+  DISLIKE_REACTION,
+  FIRE_REACTION,
+  HEART_REACTION,
+  RESET_REACTION,
+  ACTIVE_REACTION,
+} from "./constants";
 
 export default class Reaction {
   constructor() {
@@ -16,26 +22,26 @@ export default class Reaction {
   }
 
   increment(type) {
-    switch(type) {
+    switch (type) {
       case LIKE_REACTION:
-        this.likeCounter++
+        this.likeCounter++;
         break;
       case DISLIKE_REACTION:
-        this.dislikeCounter++
+        this.dislikeCounter++;
         break;
       case HEART_REACTION:
-        this.heartCounter++
+        this.heartCounter++;
         break;
       case FIRE_REACTION:
-        this.fireCounter++
+        this.fireCounter++;
         break;
       case RESET_REACTION:
-        this.reset()
-      break;
+        this.reset();
+        break;
     }
   }
 
   handleReaction(data) {
-    this.increment(data.reactionType)
+    this.increment(data.reactionType);
   }
 }

@@ -1,12 +1,18 @@
 import React from "react";
-import {  render, cleanup, queryByText, fireEvent, shallow, } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  queryByText,
+  fireEvent,
+  shallow,
+} from "@testing-library/react";
 import ActiveUser from "../../../app/javascript/bundles/YouRadioReact/components/ActiveUser";
 
 const user = {
-    id: 1,
-    url: "testurl.png",
-    name: "Testuser"
-}
+  id: 1,
+  url: "testurl.png",
+  name: "Testuser",
+};
 
 afterEach(cleanup);
 describe("ActiveUser", () => {
@@ -22,7 +28,7 @@ describe("ActiveUser", () => {
 
   it("list item id should be user id", () => {
     const { container } = render(<ActiveUser user={user}></ActiveUser>);
-    const id = container.querySelector("li").getAttribute("id")
-    expect(id).toBe(user.id.toString())
+    const id = container.querySelector("li").getAttribute("id");
+    expect(id).toBe(user.id.toString());
   });
 });
