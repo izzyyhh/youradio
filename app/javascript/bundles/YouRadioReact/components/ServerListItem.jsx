@@ -14,7 +14,7 @@ const ServerListItem = ({name, imgUrl}) => {
 
 ServerListItem.propTypes = {
    name: PropTypes.string.isRequired,
-//   updateName: PropTypes.func.isRequired,
+   imgUrl: PropTypes.string
 };
 
 export default ServerListItem;
