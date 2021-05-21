@@ -31,7 +31,7 @@ const useReactions = (setUserList, userList) => {
       if (data.reactionType === ACTIVE_REACTION) {
         getUser(setUserList);
         // next line is needed to keep the information alive if another user joins
-        setReactions(reactions)
+        setReactions(reactions);
       } else {
         reactions.handleReaction(data);
         console.log("reaction");
