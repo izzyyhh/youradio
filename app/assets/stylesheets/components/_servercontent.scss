@@ -32,23 +32,25 @@
     left: 2rem;
 
     button {
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: black;
+        border-radius: 10px;
+        padding: 6px 20px;
+        font-size: 1.2rem;
+        color: whitesmoke;
         cursor: pointer;
         border: 0;
-        border-radius: 100%;
-        color: whitesmoke;
-        height: 40px;
-        width: 40px;
-        background-color: #384750;
-        margin-left: 7px;
-        margin-right: 7px;
+        transition: ease-in-out .2s;
+
         i {
-            color: #A9DBA8;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            margin-left: .2rem;
         }
     }
 
     button:hover{
-        background-color: #2a2828e5;
+        opacity: .7;
     }
 
     .counterleft-wrapper {
@@ -67,12 +69,7 @@
         margin-left: auto;
     }
     .counter-box {
-        margin-left: 10px;
-        margin-right: 10px;
-        background-color: black;
-        border-radius: 10px;
-        padding: 0 10px;
-        font-size: 1.2rem;
+
     }
 }
 
