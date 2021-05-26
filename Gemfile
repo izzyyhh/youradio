@@ -78,3 +78,10 @@ gem 'webpacker', '~> 5'
 gem 'react_on_rails', '= 12.0.4'
 
 gem 'mini_racer', platforms: :ruby
+
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
