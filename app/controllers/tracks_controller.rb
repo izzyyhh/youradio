@@ -82,14 +82,14 @@ class TracksController < ApplicationController
   end
 
   def fetch_youtube_struct(youtube_id)
-    api_key = ENV.fetch('API_KEY')
+    api_key = ENV.fetch('YOUTUBE_DATA_V3_API_KEY')
 
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{youtube_id}&part=contentDetails&key=#{api_key}"
     JSON.parse(RestClient.get(url), object_class: OpenStruct)
   end
 
   def fetch_youtube_details(youtube_id)
-    api_key = ENV.fetch('API_KEY')
+    api_key = ENV.fetch('YOUTUBE_DATA_V3_API_KEY')
 
     details_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=#{youtube_id}&key=#{api_key}"
     JSON.parse(RestClient.get(details_url), object_class: OpenStruct)
